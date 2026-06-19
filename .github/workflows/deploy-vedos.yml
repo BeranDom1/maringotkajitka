@@ -28,7 +28,6 @@ jobs:
           fi
 
       - name: Deploy over FTP
-        if: ${{ env.VEDOS_FTP_SERVER_VALUE != '' && env.VEDOS_FTP_USERNAME_VALUE != '' && env.VEDOS_FTP_PASSWORD_VALUE != '' }}
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ env.VEDOS_FTP_SERVER_VALUE }}
