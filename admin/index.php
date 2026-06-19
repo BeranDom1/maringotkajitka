@@ -88,17 +88,36 @@ if (is_logged_in() && $_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($action === 'save') {
         $captions = $_POST['captions'] ?? [];
+        $orders = $_POST['orders'] ?? [];
 
-        foreach ($items as &$item) {
+        foreach ($items as $index => &$item) {
             $id = (string) ($item['id'] ?? '');
             if (isset($captions[$id])) {
                 $item['caption'] = trim((string) $captions[$id]);
             }
+
+            $item['_order'] = isset($orders[$id]) ? (int) $orders[$id] : $index + 1;
+            $item['_originalIndex'] = $index;
+        }
+        unset($item);
+
+        usort($items, static function (array $left, array $right): int {
+            $orderCompare = ($left['_order'] ?? 0) <=> ($right['_order'] ?? 0);
+
+            if ($orderCompare !== 0) {
+                return $orderCompare;
+            }
+
+            return ($left['_originalIndex'] ?? 0) <=> ($right['_originalIndex'] ?? 0);
+        });
+
+        foreach ($items as &$item) {
+            unset($item['_order'], $item['_originalIndex']);
         }
         unset($item);
 
         write_gallery($items);
-        $message = 'Popisky byly ulozene.';
+        $message = 'Galerie byla ulozena.';
     }
 
     if ($action === 'delete') {
@@ -177,23 +196,30 @@ $items = is_logged_in() ? read_gallery() : [];
         </section>
 
         <section class="panel">
-          <h2>Upravit popisky</h2>
+          <h2>Upravit galerii</h2>
           <?php if (!$items): ?>
             <p class="hint">Galerie zatím nemá žádné fotky.</p>
           <?php else: ?>
+            <p class="hint">Pořadí určuje, jak se fotky zobrazí na webu. Prvních 8 fotek je vidět hned, další se zobrazí po tlačítku „Zobrazit další“.</p>
             <form method="post">
               <input type="hidden" name="csrf_token" value="<?= e(csrf_token()) ?>">
               <input type="hidden" name="action" value="save">
               <div class="grid">
-                <?php foreach ($items as $item): ?>
+                <?php foreach ($items as $index => $item): ?>
                   <?php
                     $id = (string) ($item['id'] ?? '');
                     $image = (string) ($item['image'] ?? '');
                     $caption = (string) ($item['caption'] ?? '');
+                    $order = $index + 1;
                   ?>
                   <article class="photo-card">
+                    <?php if ($order <= 8): ?>
+                      <span class="photo-badge">Vidět hned</span>
+                    <?php endif; ?>
                     <img src="<?= e(image_src_for_admin($image)) ?>" alt="">
                     <div class="photo-card-body">
+                      <label for="order-<?= e($id) ?>">Pořadí</label>
+                      <input type="number" id="order-<?= e($id) ?>" name="orders[<?= e($id) ?>]" min="1" step="1" value="<?= e((string) $order) ?>">
                       <label for="caption-<?= e($id) ?>">Popisek</label>
                       <textarea id="caption-<?= e($id) ?>" name="captions[<?= e($id) ?>]" placeholder="Popisek může zůstat prázdný."><?= e($caption) ?></textarea>
                       <button class="button danger" type="submit" form="delete-<?= e($id) ?>">Smazat fotku</button>
@@ -202,7 +228,7 @@ $items = is_logged_in() ? read_gallery() : [];
                 <?php endforeach; ?>
               </div>
               <div class="actions">
-                <button class="button" type="submit">Uložit popisky</button>
+                <button class="button" type="submit">Uložit galerii</button>
               </div>
             </form>
 

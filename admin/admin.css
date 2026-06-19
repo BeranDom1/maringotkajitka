@@ -64,6 +64,7 @@ a {
 }
 
 .photo-card {
+  position: relative;
   overflow: hidden;
   background: #fff;
   border: 1px solid var(--line);
@@ -82,6 +83,19 @@ a {
   display: grid;
   gap: 12px;
   padding: 14px;
+}
+
+.photo-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1;
+  padding: 7px 10px;
+  color: #fff;
+  background: rgba(34, 53, 41, 0.88);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 800;
 }
 
 label {
