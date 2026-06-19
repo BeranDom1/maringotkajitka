@@ -14,7 +14,6 @@ jobs:
       VEDOS_FTP_SERVER_VALUE: ${{ secrets.VEDOS_FTP_SERVER }}
       VEDOS_FTP_USERNAME_VALUE: ${{ secrets.VEDOS_FTP_USERNAME }}
       VEDOS_FTP_PASSWORD_VALUE: ${{ secrets.VEDOS_FTP_PASSWORD }}
-      VEDOS_FTP_SERVER_DIR_VALUE: ${{ secrets.VEDOS_FTP_SERVER_DIR }}
 
     steps:
       - name: Checkout
@@ -29,13 +28,13 @@ jobs:
           fi
 
       - name: Deploy over FTP
-        if: ${{ env.VEDOS_FTP_SERVER_VALUE != '' && env.VEDOS_FTP_USERNAME_VALUE != '' && env.VEDOS_FTP_PASSWORD_VALUE != '' && env.VEDOS_FTP_SERVER_DIR_VALUE != '' }}
+        if: ${{ env.VEDOS_FTP_SERVER_VALUE != '' && env.VEDOS_FTP_USERNAME_VALUE != '' && env.VEDOS_FTP_PASSWORD_VALUE != '' }}
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ env.VEDOS_FTP_SERVER_VALUE }}
           username: ${{ env.VEDOS_FTP_USERNAME_VALUE }}
           password: ${{ env.VEDOS_FTP_PASSWORD_VALUE }}
-          server-dir: ${{ env.VEDOS_FTP_SERVER_DIR_VALUE }}
+          server-dir: /www/domains/maringotkauvody.cz/
           local-dir: ./
           exclude: |
             **/.git*
