@@ -1,5 +1,6 @@
 const navbar = document.querySelector(".navbar");
 const navLinks = document.querySelectorAll(".nav-link");
+const heroVideo = document.querySelector(".hero-video");
 const bookingForm = document.querySelector("#bookingForm");
 const formStatus = document.querySelector("#formStatus");
 const galleryGrid = document.querySelector("#galleryGrid");
@@ -19,6 +20,16 @@ function updateNavbar() {
 
 window.addEventListener("scroll", updateNavbar, { passive: true });
 updateNavbar();
+
+if (heroVideo) {
+  const showHeroVideo = () => heroVideo.classList.add("is-loaded");
+
+  if (heroVideo.readyState >= 2) {
+    showHeroVideo();
+  } else {
+    heroVideo.addEventListener("loadeddata", showHeroVideo, { once: true });
+  }
+}
 
 navLinks.forEach((link) => {
   link.addEventListener("click", () => {
