@@ -385,6 +385,12 @@ h3 {
   border-radius: 8px;
 }
 
+.gallery-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.75rem;
+}
+
 .info-card,
 .review-card {
   height: 100%;

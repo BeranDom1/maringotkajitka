@@ -3,11 +3,15 @@ const navLinks = document.querySelectorAll(".nav-link");
 const bookingForm = document.querySelector("#bookingForm");
 const formStatus = document.querySelector("#formStatus");
 const galleryGrid = document.querySelector("#galleryGrid");
+const galleryLoadMore = document.querySelector("#galleryLoadMore");
 const photoLightbox = document.querySelector("#photoLightbox");
 const photoLightboxImage = document.querySelector("#photoLightboxImage");
 const photoLightboxCaption = document.querySelector("#photoLightboxCaption");
 const photoLightboxLink = document.querySelector("#photoLightboxLink");
 const photoLightboxClose = document.querySelector(".photo-lightbox-close");
+const galleryPageSize = 8;
+let galleryItems = [];
+let visibleGalleryItems = galleryPageSize;
 
 function updateNavbar() {
   navbar.classList.toggle("is-scrolled", window.scrollY > 24);
@@ -35,15 +39,18 @@ function escapeText(value) {
     .replaceAll('"', "&quot;");
 }
 
-function renderGallery(items) {
+function renderGallery() {
   if (!galleryGrid) return;
 
-  if (!items.length) {
+  if (!galleryItems.length) {
     galleryGrid.innerHTML = '<div class="col-12"><p class="gallery-empty">Galerie zatím čeká na první fotky.</p></div>';
+    if (galleryLoadMore) galleryLoadMore.hidden = true;
     return;
   }
 
-  galleryGrid.innerHTML = items
+  const itemsToShow = galleryItems.slice(0, visibleGalleryItems);
+
+  galleryGrid.innerHTML = itemsToShow
     .map((item, index) => {
       const isWide = index % 5 === 3 || index % 5 === 4;
       const columnClass = isWide
@@ -64,6 +71,12 @@ function renderGallery(items) {
       `;
     })
     .join("");
+
+  if (galleryLoadMore) {
+    const hasMoreItems = visibleGalleryItems < galleryItems.length;
+    galleryLoadMore.hidden = !hasMoreItems;
+    galleryLoadMore.textContent = hasMoreItems ? "Zobrazit další" : "";
+  }
 }
 
 if (galleryGrid) {
@@ -72,10 +85,22 @@ if (galleryGrid) {
       if (!response.ok) throw new Error("Gallery data not found");
       return response.json();
     })
-    .then((items) => renderGallery(Array.isArray(items) ? items : []))
+    .then((items) => {
+      galleryItems = Array.isArray(items) ? items : [];
+      visibleGalleryItems = galleryPageSize;
+      renderGallery();
+    })
     .catch(() => {
       galleryGrid.innerHTML = '<div class="col-12"><p class="gallery-empty">Galerii se nepodařilo načíst.</p></div>';
+      if (galleryLoadMore) galleryLoadMore.hidden = true;
     });
+}
+
+if (galleryLoadMore) {
+  galleryLoadMore.addEventListener("click", () => {
+    visibleGalleryItems += galleryPageSize;
+    renderGallery();
+  });
 }
 
 function openPhotoLightbox(image) {
