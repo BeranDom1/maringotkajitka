@@ -47,6 +47,10 @@ a {
   transition: padding 0.25s ease, box-shadow 0.25s ease;
 }
 
+.navbar > .container {
+  gap: clamp(0.85rem, 2vw, 1.8rem);
+}
+
 .navbar.is-scrolled {
   padding: 10px 0;
   box-shadow: 0 8px 28px rgba(34, 53, 41, 0.11);
@@ -61,17 +65,20 @@ a {
 }
 
 .social-links {
-  display: inline-flex;
+  display: inline-flex !important;
   align-items: center;
-  gap: 0.45rem;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 0.7rem;
 }
 
 .social-links a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
+  flex: 0 0 auto;
+  width: 46px;
+  height: 46px;
   color: var(--forest);
   background: rgba(255, 255, 255, 0.46);
   border: 1px solid rgba(34, 53, 41, 0.14);
@@ -87,13 +94,14 @@ a {
 }
 
 .social-links svg {
-  width: 18px;
-  height: 18px;
+  display: block;
+  width: 24px;
+  height: 24px;
   fill: currentColor;
 }
 
 .nav-social {
-  margin-left: clamp(1rem, 3vw, 2.2rem);
+  margin-right: auto;
 }
 
 .nav-link {
@@ -1065,9 +1073,22 @@ main img:not(.hero-logo):not(.hero-corner-logo img) {
   }
 
   .nav-social {
-    order: 3;
-    width: 100%;
-    margin: 0.7rem 0 0;
+    margin-left: auto;
+    margin-right: 0.35rem;
+  }
+
+  .social-links {
+    gap: 0.45rem;
+  }
+
+  .social-links a {
+    width: 40px;
+    height: 40px;
+  }
+
+  .social-links svg {
+    width: 21px;
+    height: 21px;
   }
 
   .footer-links {
