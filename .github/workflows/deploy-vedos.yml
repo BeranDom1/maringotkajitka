@@ -1,0 +1,44 @@
+name: Deploy to Vedos
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Upload web files
+    runs-on: ubuntu-latest
+    env:
+      VEDOS_FTP_SERVER_VALUE: ${{ secrets.VEDOS_FTP_SERVER }}
+      VEDOS_FTP_USERNAME_VALUE: ${{ secrets.VEDOS_FTP_USERNAME }}
+      VEDOS_FTP_PASSWORD_VALUE: ${{ secrets.VEDOS_FTP_PASSWORD }}
+      VEDOS_FTP_SERVER_DIR_VALUE: ${{ secrets.VEDOS_FTP_SERVER_DIR }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create admin config
+        env:
+          ADMIN_PASSWORD: ${{ secrets.MARINGOTKA_ADMIN_PASSWORD }}
+        run: |
+          if [ -n "$ADMIN_PASSWORD" ]; then
+            php -r "file_put_contents('admin/config.local.php', \"<?php\n\ndefine('ADMIN_PASSWORD', \" . var_export(getenv('ADMIN_PASSWORD'), true) . \");\n\");"
+          fi
+
+      - name: Deploy over FTP
+        if: ${{ env.VEDOS_FTP_SERVER_VALUE != '' && env.VEDOS_FTP_USERNAME_VALUE != '' && env.VEDOS_FTP_PASSWORD_VALUE != '' && env.VEDOS_FTP_SERVER_DIR_VALUE != '' }}
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ env.VEDOS_FTP_SERVER_VALUE }}
+          username: ${{ env.VEDOS_FTP_USERNAME_VALUE }}
+          password: ${{ env.VEDOS_FTP_PASSWORD_VALUE }}
+          server-dir: ${{ env.VEDOS_FTP_SERVER_DIR_VALUE }}
+          local-dir: ./
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github*/**
+            **/README.md

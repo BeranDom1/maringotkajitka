@@ -1,0 +1,86 @@
+[
+  {
+    "id": "maringotka-zvenku",
+    "image": "assets/maringotka/maringotka-zvenku.jpeg",
+    "caption": "Maringotka přímo u rybníka",
+    "createdAt": "2026-06-16T17:41:28+02:00"
+  },
+  {
+    "id": "interier-kuchynka",
+    "image": "assets/maringotka/interier-kuchynka.jpeg",
+    "caption": "Kuchyňka, posezení a vybavení uvnitř",
+    "createdAt": "2026-06-16T17:41:29+02:00"
+  },
+  {
+    "id": "interier-postele-stul",
+    "image": "assets/maringotka/interier-postele-stul.jpeg",
+    "caption": "Zázemí pro spaní a stolování",
+    "createdAt": "2026-06-16T17:41:29+02:00"
+  },
+  {
+    "id": "rybnik-lodka-pruty",
+    "image": "assets/maringotka/rybnik-lodka-pruty.jpeg",
+    "caption": "Rybník, loďka a pruty připravené u břehu",
+    "createdAt": "2026-06-16T17:41:34+02:00"
+  },
+  {
+    "id": "rybnik-pruty-breh",
+    "image": "assets/maringotka/rybnik-pruty-breh.jpeg",
+    "caption": "",
+    "createdAt": "2026-06-16T17:41:34+02:00"
+  },
+  {
+    "id": "breh-u-maringotky",
+    "image": "assets/maringotka/breh-u-maringotky.jpeg",
+    "caption": "",
+    "createdAt": "2026-06-16T17:41:34+02:00"
+  },
+  {
+    "id": "galerie-2026-06-17-rybar-u-vody",
+    "image": "assets/maringotka/galerie-2026-06-17-rybar-u-vody.jpeg",
+    "caption": "",
+    "createdAt": "2026-06-17T20:47:39+02:00"
+  },
+  {
+    "id": "galerie-2026-06-17-maringotka-odraz",
+    "image": "assets/maringotka/galerie-2026-06-17-maringotka-odraz.jpeg",
+    "caption": "",
+    "createdAt": "2026-06-17T20:47:39+02:00"
+  },
+  {
+    "id": "galerie-2026-06-17-rybnik-z-vysky",
+    "image": "assets/maringotka/galerie-2026-06-17-rybnik-z-vysky.jpeg",
+    "caption": "",
+    "createdAt": "2026-06-17T20:47:39+02:00"
+  },
+  {
+    "id": "galerie-2026-06-17-maringotka-krajina",
+    "image": "assets/maringotka/galerie-2026-06-17-maringotka-krajina.jpeg",
+    "caption": "",
+    "createdAt": "2026-06-17T20:47:39+02:00"
+  },
+  {
+    "id": "galerie-2026-06-17-maringotka-molo",
+    "image": "assets/maringotka/galerie-2026-06-17-maringotka-molo.jpeg",
+    "caption": "",
+    "createdAt": "2026-06-17T20:47:39+02:00"
+  },
+  {
+    "id": "galerie-2026-06-17-rybnik-panoramaticky",
+    "image": "assets/maringotka/galerie-2026-06-17-rybnik-panoramaticky.jpeg",
+    "caption": "",
+    "createdAt": "2026-06-17T20:47:39+02:00"
+  },
+  {
+    "id": "galerie-2026-06-17-lodka-zapad",
+    "image": "assets/maringotka/galerie-2026-06-17-lodka-zapad.jpeg",
+    "caption": "",
+    "createdAt": "2026-06-17T20:47:39+02:00"
+  },
+  {
+    "id": "galerie-2026-06-17-maringotka-u-rybnika",
+    "image": "assets/maringotka/galerie-2026-06-17-maringotka-u-rybnika.jpeg",
+    "caption": "",
+    "createdAt": "2026-06-17T20:47:39+02:00"
+  }
+]

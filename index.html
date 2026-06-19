@@ -3,16 +3,15 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Rybářská maringotka u soukromého rybníka pro klidný pobyt v přírodě.">
-    <title>Maringotka Jitka | U soukromého rybníka</title>
+    <meta name="description" content="Maringotka u vody u soukromého rybníka pro klidný pobyt v přírodě.">
+    <title>Maringotka u vody | U soukromého rybníka</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="preconnect" href="https://images.unsplash.com">
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
     <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#hero">Maringotka Jitka</a>
+        <a class="navbar-brand" href="#hero">Maringotka u vody</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Otevřít menu">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -21,8 +20,11 @@
             <li class="nav-item"><a class="nav-link" href="#o-maringotce">O maringotce</a></li>
             <li class="nav-item"><a class="nav-link" href="#galerie">Galerie</a></li>
             <li class="nav-item"><a class="nav-link" href="#okoli">Okolí</a></li>
+            <li class="nav-item"><a class="nav-link" href="#pravidla-rybolovu">Pravidla lovu</a></li>
             <li class="nav-item"><a class="nav-link" href="#recenze">Recenze</a></li>
-            <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+            <li class="nav-item"><a class="nav-link" href="#cenik">Ceník</a></li>
+            <li class="nav-item"><a class="nav-link" href="#kontakt">Kontakt</a></li>
+            <li class="nav-item"><a class="nav-link" href="#rybi-pribehy">Rybí příběhy</a></li>
             <li class="nav-item ms-lg-3"><a class="btn btn-primary" href="#rezervace">Rezervovat</a></li>
           </ul>
         </div>
@@ -31,22 +33,22 @@
 
     <main>
       <section id="hero" class="hero-section">
+        <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/maringotka/rybnik-pruty-breh.jpeg" aria-hidden="true">
+          <source src="assets/video/hero-maringotka.mp4" type="video/mp4">
+        </video>
         <div class="hero-bg" aria-hidden="true"></div>
+        <div class="hero-corner-logo" aria-label="Maringotka u vody">
+          <img src="assets/logo-transparent.png" alt="">
+        </div>
         <div class="container hero-content">
-          <div class="row align-items-end min-vh-100">
-            <div class="col-lg-8 col-xl-7">
-              <p class="eyebrow">Soukromý rybník, ticho a dobrá voda</p>
-              <h1>Rybářská maringotka pro odpočinek přímo u hladiny</h1>
-              <p class="hero-lead">Útulný pobyt pro dva až čtyři hosty, ranní mlha nad rybníkem, večerní gril a místo, kde se čas příjemně zpomalí.</p>
+          <div class="row g-5 align-items-center justify-content-between min-vh-100 hero-grid">
+            <div class="col-lg-7 col-xl-6">
+              <p class="eyebrow">Soukromý rybník, klid a velké ryby.</p>
+              <h1>Rybářská maringotka</h1>
+              <p class="hero-lead">Útulný pobyt pro jednoho až čtyři hosty, ranní mlha nad rybníkem, večerní gril a místo, kde se čas příjemně zpomalí.</p>
               <div class="hero-actions">
                 <a class="btn btn-primary btn-lg" href="#rezervace">Chci volný termín</a>
                 <a class="btn btn-outline-light btn-lg" href="#galerie">Prohlédnout galerii</a>
-              </div>
-            </div>
-            <div class="col-lg-4 d-none d-lg-block">
-              <div class="hero-note">
-                <span>Od 2 900 Kč / noc</span>
-                <strong>Soukromí, ohniště, loďka a rybaření v ceně pobytu.</strong>
               </div>
             </div>
           </div>
@@ -58,25 +60,33 @@
           <div class="row g-5 align-items-center">
             <div class="col-lg-6">
               <div class="image-stack">
-                <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1100&q=80" alt="Dřevěná terasa v přírodě" class="img-fluid main-img">
-                <div class="floating-badge">
-                  <span>Pro 2-4 osoby</span>
-                  <strong>Celoročně obyvatelná</strong>
+                <img src="assets/maringotka/maringotka-zvenku.jpeg" alt="Maringotka u vody zvenku" class="img-fluid main-img">
+                <div class="interior-preview">
+                  <img src="assets/maringotka/interier-kuchynka.jpeg" alt="Kuchyňka a posezení v maringotce">
+                  <img src="assets/maringotka/interier-postele-stul.jpeg" alt="Postele, stůl a vybavení v maringotce">
                 </div>
               </div>
             </div>
             <div class="col-lg-6">
               <p class="eyebrow text-earth">O maringotce</p>
-              <h2>Malé místo s velkým klidem</h2>
-              <p>Maringotka Jitka stojí na břehu soukromého rybníka a je zařízená tak, aby vám nic důležitého nechybělo. Uvnitř najdete pohodlné spaní, vybavený kuchyňský kout, kamna, koupelnu se sprchou a posezení s výhledem na vodu.</p>
-              <p>Venku čeká terasa, ohniště, gril, lehátka a klidný kout pro rybáře i ty, kteří si chtějí jen číst, koukat do korun stromů a nikam nespěchat.</p>
-              <div class="feature-grid">
-                <div><span>01</span> Soukromý rybník</div>
-                <div><span>02</span> Rybaření u pobytu</div>
-                <div><span>03</span> Terasa a gril</div>
-                <div><span>04</span> Kamna na dřevo</div>
-              </div>
+              <h2>Něco o maringotce</h2>
+              <p>Zázemí pro 4 osoby skrývá nové vybavení a moderní vzhled. V maringotce jsou rozvody na 220 V s maximálním zatížením 500 W. Zdroj dodává 100Ah baterie s měničem napětí, takže si v pohodě dobijete elektroniku, aku baterky nebo baterky do lodiček. Rozvody by měly utáhnout i kostku s pípou na točené pivo.</p>
+              <p>Součástí vybavení je plynová 60l lednička a plynový sporák na dvě plotýnky. Pitná voda je dodávána aku čerpadlem přímo do vodní baterie. Odpad je vyřešen barelem tak, aby nepřetekl, proto je důležité nedolévat další vodu do dřezu. Barely mají objem přibližně 40 litrů.</p>
+              <p>Kuchyňka je plně vybavena na vaření i smažení. Stolování zpříjemní nové nádobí v moderním designu a dekorační prvky přispějí k příjemnému prostředí u ranní kávy i společného oběda. Maringotka je kompletně zateplená, ale večerní západ slunce umí malý prostor rychle vyhřát.</p>
+              <p>Pro klid od komárů je ve vstupních dveřích umístěna síť, takže není problém mít otevřeno a spát na čerstvém vzduchu. Aktuálně není řešeno vytápění, časem uvidíme, jak moc bude potřeba.</p>
+              <p>Pro hygienu je připravena venkovní sprcha. Ručníky nejsou součástí vybavení, ty je potřeba mít vlastní. Koupání v rybníku za účelem hygieny je zakázáno. Rybník je hodně zarybněný a bahnitého typu, takže koupel není příliš příjemná.</p>
+              <p>Nedaleko maringotky se nachází krásný zatopený lom Čenkov, kde je koupání opravdu luxusní a určitě stojí za návštěvu v jakékoliv době a počasí. WC je řešeno čistou novou Toykou, která je pravidelně čištěna.</p>
             </div>
+          </div>
+          <div class="about-video-wrap">
+            <div class="about-video-copy">
+              <p class="eyebrow text-earth">Video prohlídka</p>
+              <h3>Podívejte se na maringotku, její zázemí a okolí rybníku.</h3>
+            </div>
+            <video class="about-video" controls playsinline preload="metadata" poster="assets/maringotka/interier-kuchynka.jpeg">
+              <source src="assets/video/maringotka-prohlidka.mp4" type="video/mp4">
+              Váš prohlížeč nepodporuje přehrávání videa.
+            </video>
           </div>
         </div>
       </section>
@@ -85,68 +95,100 @@
         <div class="container">
           <div class="section-heading">
             <p class="eyebrow text-earth">Galerie</p>
-            <h2>Voda, dřevo a ticho kolem</h2>
           </div>
-          <div class="row g-3 gallery-grid">
-            <div class="col-md-6 col-lg-4">
-              <img src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=900&q=80" alt="Lesní krajina u vody">
-            </div>
-            <div class="col-md-6 col-lg-4">
-              <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=80" alt="Jezero v přírodě">
-            </div>
-            <div class="col-md-6 col-lg-4">
-              <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80" alt="Klidná hladina při západu slunce">
-            </div>
-            <div class="col-md-6 col-lg-7">
-              <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=1200&q=80" alt="Posezení v přírodě">
-            </div>
-            <div class="col-md-12 col-lg-5">
-              <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=80" alt="Cesta do přírody">
+          <div class="row g-3 gallery-grid" id="galleryGrid">
+            <div class="col-12">
+              <p class="gallery-empty">Galerie se načítá.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="okoli" class="section-pad">
+      <section id="pravidla-rybolovu" class="section-pad fishing-rules-section">
         <div class="container">
-          <div class="row g-4 align-items-start">
-            <div class="col-lg-5">
-              <p class="eyebrow text-earth">Okolí</p>
-              <h2>Den si můžete nechat plynout úplně pomalu</h2>
-              <p>Nejbližší okolí patří rybníku, loukám a polním cestám. Když se vám zachce výlet, dojedete za krátkou chvíli na rozhlednu, do lesa, na cyklostezku nebo do malé hospůdky v okolní vesnici.</p>
+          <div class="section-heading">
+            <p class="eyebrow text-earth">Pravidla rybolovu</p>
+            <h2>Chytáme s respektem k rybám i místu</h2>
+            <p>U nás se loví pouze z hráze. Každý rybář, který si zaplatí povolenku, může lovit na tři pruty. Platí pravidlo chyť a pusť, nicméně v ceně povolenky je jeden kus kapra 45-60 cm nebo amura 50-70 cm.</p>
+          </div>
+
+          <div class="rules-intro">
+            <div>
+              <span>Povinná výbava</span>
+              <p>Rybáři musí mít dostačující vybavení na velké ryby: podběrák s rameny minimálně 80 cm, podložku, pean nebo kleště a při uchování ryby do rána na focení také EKO sak.</p>
             </div>
-            <div class="col-lg-7">
-              <div class="row g-3">
-                <div class="col-sm-6">
-                  <div class="info-card">
-                    <span>Ráno</span>
-                    <h3>Rybaření z břehu</h3>
-                    <p>Vezměte pruty, kávu a užijte si první záběr ještě před snídaní.</p>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="info-card">
-                    <span>Odpoledne</span>
-                    <h3>Procházky a kola</h3>
-                    <p>Polní cesty a lesní úseky jsou ideální na nenáročný výlet.</p>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="info-card">
-                    <span>Večer</span>
-                    <h3>Oheň u vody</h3>
-                    <p>Ohniště, deka, západ slunce a hvězdy bez městského světla.</p>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="info-card">
-                    <span>Výlet</span>
-                    <h3>Místní památky</h3>
-                    <p>Hrady, zámky a vyhlídky v okolí zvládnete pohodlně autem.</p>
-                  </div>
-                </div>
-              </div>
+            <div>
+              <span>Šetrné zacházení</span>
+              <p>Ryby se fotí a váží pouze na podložce, s opatrností a úctou k rybě. Chycenou rybu nikdy nezvedejte na háčku nad vodní hladinu.</p>
             </div>
+          </div>
+
+          <div class="rules-grid">
+            <article class="rules-card rules-card-ban">
+              <h3>Zákazy</h3>
+              <ul>
+                <li>lov na pletenou šňůru, vyjma lovu sumce viz Sumcový program</li>
+                <li>lov z lodi, vyjma zdolávání velké ryby</li>
+                <li>lov na vlasce průměru menší než 0,28 mm</li>
+                <li>lov mimo hráz po vyznačené místo, tedy po malý smrček</li>
+                <li>zvedat ryby na háčku nad vodní hladinu</li>
+                <li>fotit a vážit ryby mimo podložku</li>
+                <li>lovit na dva a více návazců, vyjma lovu sumce viz Sumcový program</li>
+                <li>krmit nedovařenou kukuřicí a luštěninami</li>
+                <li>krmit více než 20 kg za týden</li>
+                <li>používat motor na člun</li>
+                <li>opustit nahozené pruty a jít mimo hráz</li>
+                <li>brodit za účelem zanášení nástrah; kolem břehu hráze není problém vlézt do vody</li>
+                <li>používat odpadávající systém olova; betonové a kamenné zátěže jako odpadávající systém povoleny jsou</li>
+                <li>lovit na více prutů, než je povoleno</li>
+                <li>usmrtit rybu bez předchozí domluvy s majitelem podle pravidel výše</li>
+                <li>používat nástražní ryby bez předchozí domluvy s majitelem, viz Sumcový program</li>
+                <li>uchovávat nástražní ryby ve vezírcích; doporučená je řízkovnice, děrovaný kýbl či EKO sak</li>
+              </ul>
+            </article>
+
+            <article class="rules-card rules-card-allow">
+              <h3>Povoleno</h3>
+              <ul>
+                <li>zavážení nástrah lodičkou či člunem</li>
+                <li>krmit a vnadit maximálně 20 kg na týden</li>
+                <li>používat krmítka a method systém</li>
+                <li>šokový silon pro delší nához, maximálně 15 m</li>
+                <li>používat příposlech a vzdálit se od prutů v oblasti hráze</li>
+                <li>lovit na nástražní rybu větší než 20 cm: kapr max. 35 cm, lín max. 35 cm, okoun max. 35 cm, cejn, plotice, karas, perlín, jelec</li>
+                <li>ryby fotit a vážit s veškerou opatrností, úctou k rybě a pouze s podložkou</li>
+                <li>chytat na rousnice a červy</li>
+                <li>chytat non-stop, ale být schopný fungovat při záběru</li>
+              </ul>
+            </article>
+
+            <article class="rules-card">
+              <h3>Doporučeno</h3>
+              <ul>
+                <li>nepoužívat koncové olovo napevno</li>
+                <li>přechovávat nástražní ryby v nádobě na břehu</li>
+                <li>nahazovat bez PVA či krmení s olovem těžším než 80 g z důvodu zapadnutí do bahna</li>
+                <li>nelovit bez povolené brzdy při vzdálení se od prutů</li>
+                <li>nelovit sumce na kaprové vybavení</li>
+                <li>v případě přívlače mít vytažené ostatní pruty</li>
+              </ul>
+            </article>
+
+            <article class="rules-card rules-card-catfish">
+              <h3>Sumcový program</h3>
+              <ul>
+                <li>je povoleno lovit sumce na trhačku, podvodní splávek či bójku</li>
+                <li>podmínkou lovu sumce je zavést nástrahu člunem či lodičkou</li>
+                <li>v případě trhačky musí lovící po sobě odstranit silony z kůlů</li>
+                <li>je dovoleno používat pouze jednoháky o třech návazcích</li>
+                <li>chyceného sumce je povinnost položit na mokrou plachtu v prostoru vjezdu do vody</li>
+                <li>doporučujeme vlastnit vylovovací rukavici a být opatrný k sobě i k rybě</li>
+                <li>používat pletené šňůry či vlasce minimálně na 35 kg</li>
+                <li>používat sumcové pruty o celkové gramáži nad 200 g</li>
+                <li>používat vhodné vybavení na lov sumce: návazce, háky, obratlíky, navijáky, trubky a stojany</li>
+                <li>doporučujeme chytit nástražní rybu přímo z revíru a omezit vlastní dovoz kvůli zavlečení nemocí</li>
+              </ul>
+            </article>
           </div>
         </div>
       </section>
@@ -155,127 +197,290 @@
         <div class="container">
           <div class="section-heading">
             <p class="eyebrow text-earth">Recenze</p>
-            <h2>Hosté nejvíc vzpomínají na klid</h2>
+            <h2>Google recenze hostů</h2>
           </div>
-          <div class="row g-4">
-            <div class="col-md-4">
-              <article class="review-card">
-                <div class="stars">★★★★★</div>
-                <p>"Krásné místo přímo u vody. Ráno jsme seděli na terase a poslouchali jen ptáky. Přesně to jsme potřebovali."</p>
-                <strong>Petra a Martin</strong>
-              </article>
-            </div>
-            <div class="col-md-4">
-              <article class="review-card">
-                <div class="stars">★★★★★</div>
-                <p>"Maringotka je čistá, útulná a promyšlená. Rybaření bylo skvělé a večer u ohně neměl chybu."</p>
-                <strong>Tomáš</strong>
-              </article>
-            </div>
-            <div class="col-md-4">
-              <article class="review-card">
-                <div class="stars">★★★★★</div>
-                <p>"Víkend bez hluku, bez spěchu a s krásným výhledem. Komunikace rychlá, příjezd jednoduchý."</p>
-                <strong>Lenka</strong>
-              </article>
-            </div>
+          <div class="reviews-widget">
+            <div class="elfsight-app-b4778bab-4b37-41aa-b0a5-66d9b6529689" data-elfsight-app-lazy></div>
           </div>
         </div>
       </section>
 
-      <section id="faq" class="section-pad">
+      <section id="cenik" class="section-pad pricing-section">
         <div class="container">
-          <div class="row g-5">
-            <div class="col-lg-4">
-              <p class="eyebrow text-earth">FAQ</p>
-              <h2>Nejčastější otázky</h2>
-            </div>
-            <div class="col-lg-8">
-              <div class="accordion custom-accordion" id="faqAccordion">
-                <div class="accordion-item">
-                  <h3 class="accordion-header">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqOne" aria-expanded="true" aria-controls="faqOne">Je rybaření zahrnuté v ceně?</button>
-                  </h3>
-                  <div id="faqOne" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">Ano, hosté mohou rybařit přímo na soukromém rybníku. Doporučujeme vzít vlastní vybavení.</div>
-                  </div>
-                </div>
-                <div class="accordion-item">
-                  <h3 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo" aria-expanded="false" aria-controls="faqTwo">Dá se přijet i v chladnějším počasí?</button>
-                  </h3>
-                  <div id="faqTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">Ano, maringotka má kamna na dřevo a je vhodná i pro jarní nebo podzimní pobyty.</div>
-                  </div>
-                </div>
-                <div class="accordion-item">
-                  <h3 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqThree" aria-expanded="false" aria-controls="faqThree">Můžeme vzít děti nebo psa?</button>
-                  </h3>
-                  <div id="faqThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">Děti jsou vítané po domluvě. Pobyt se psem je možný individuálně podle termínu a velikosti pejska.</div>
-                  </div>
-                </div>
-                <div class="accordion-item">
-                  <h3 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFour" aria-expanded="false" aria-controls="faqFour">Jak probíhá rezervace?</button>
-                  </h3>
-                  <div id="faqFour" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">Po odeslání poptávky vám potvrdíme dostupnost termínu, cenu a pošleme pokyny k platbě zálohy.</div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="section-heading">
+            <p class="eyebrow text-earth">Ceník</p>
+            <h2>Ceník ubytování, povolenky a půjčovna</h2>
+            <p>Rezervace je vždy na maringotku s celým rybníkem. Samostatné chytání bez ubytování není možné.</p>
+          </div>
+          <div class="pricing-table-wrap">
+            <table class="pricing-table">
+              <thead>
+                <tr>
+                  <th>TYP ubytování</th>
+                  <th>Počet osob</th>
+                  <th>Turnus</th>
+                  <th>check in/out</th>
+                  <th>Cena</th>
+                  <th>Poznámky</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Pro rybáře</th>
+                  <td>1 až 4</td>
+                  <td>st-ne</td>
+                  <td>in 16:00 / out 11:00</td>
+                  <td class="price-cell">8.000,-</td>
+                  <td>v ceně 2x povolenka na 3 pruty</td>
+                </tr>
+                <tr>
+                  <th scope="row"></th>
+                  <td>1 až 4</td>
+                  <td>ne-ne</td>
+                  <td>in 14:00 / out 11:00</td>
+                  <td class="price-cell">10.000,-</td>
+                  <td>v ceně 2x povolenka na 3 pruty</td>
+                </tr>
+                <tr>
+                  <th scope="row">Pro rodinu</th>
+                  <td>1 až 4(5)</td>
+                  <td>ne-ne</td>
+                  <td>in 14:00 / out 11:00</td>
+                  <td class="price-cell">9.000,-</td>
+                  <td>v ceně 1x povolenka na 3 pruty</td>
+                </tr>
+                <tr>
+                  <th scope="row"></th>
+                  <td>1 až 4(5)</td>
+                  <td>st-ne</td>
+                  <td>in 16:00 / out 11:00</td>
+                  <td class="price-cell">7.000,-</td>
+                  <td>v ceně 1x povolenka na 3 pruty</td>
+                </tr>
+                <tr>
+                  <th scope="row">Bivak +</th>
+                  <td>1 až 2</td>
+                  <td>st-ne</td>
+                  <td>in 16:00 / out 11:00</td>
+                  <td class="price-cell">300,-/noc</td>
+                  <td>je třeba koupit povolenku za 1000,-/ 3 pruty</td>
+                </tr>
+                <tr>
+                  <th scope="row"></th>
+                  <td>1 až 2</td>
+                  <td>ne-ne</td>
+                  <td>in 14:00 / out 11:00</td>
+                  <td class="price-cell">300,-/noc</td>
+                  <td>je třeba koupit povolenku za 1000,-/ 3 pruty</td>
+                </tr>
+                <tr class="pricing-group-row">
+                  <th scope="row" colspan="6">Povolenky</th>
+                </tr>
+                <tr>
+                  <th scope="row"></th>
+                  <td>1 dospělá</td>
+                  <td></td>
+                  <td></td>
+                  <td class="price-cell">1000,-/os</td>
+                  <td>3 pruty</td>
+                </tr>
+                <tr>
+                  <th scope="row"></th>
+                  <td>1 mládež</td>
+                  <td>0 až 12 let</td>
+                  <td></td>
+                  <td class="price-cell">300,-/os</td>
+                  <td>1 prut</td>
+                </tr>
+                <tr class="pricing-group-row">
+                  <th scope="row" colspan="6">Půjčovna</th>
+                </tr>
+                <tr>
+                  <th scope="row">zavážecí lodička</th>
+                  <td>x</td>
+                  <td>st-ne</td>
+                  <td>x</td>
+                  <td class="price-cell">1000,-</td>
+                  <td>včetně 4ks baterií a zaškolení</td>
+                </tr>
+                <tr>
+                  <th scope="row"></th>
+                  <td></td>
+                  <td>ne-ne</td>
+                  <td>x</td>
+                  <td class="price-cell">1500,-</td>
+                  <td>včetně 4ks baterií a zaškolení</td>
+                </tr>
+                <tr>
+                  <th scope="row">člun s vesly</th>
+                  <td>290cm</td>
+                  <td>st-ne</td>
+                  <td>x</td>
+                  <td class="price-cell">1500,-</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <th scope="row"></th>
+                  <td></td>
+                  <td>ne-ne</td>
+                  <td>x</td>
+                  <td class="price-cell">2000,-</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <th scope="row">sumcový prut</th>
+                  <td>240cm</td>
+                  <td>x</td>
+                  <td>1 ks</td>
+                  <td class="price-cell">200,-/den</td>
+                  <td>zaškolení pro zavežení, podmínka je vlastní člun nebo z půjčovny</td>
+                </tr>
+                <tr>
+                  <th scope="row">kaprový set</th>
+                  <td>3m/3lb</td>
+                  <td>x</td>
+                  <td>3 pruty, stojan, pípače</td>
+                  <td class="price-cell">300,-/den</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <th scope="row">kaprový prut</th>
+                  <td>3m/3lb</td>
+                  <td>x</td>
+                  <td>1 prut</td>
+                  <td class="price-cell">100,-/den</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <th scope="row">feedrový prut</th>
+                  <td>3, 3,6m</td>
+                  <td>x</td>
+                  <td>1 prut</td>
+                  <td class="price-cell">100,-/den</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <th scope="row">tyčová bójka</th>
+                  <td>x</td>
+                  <td>x</td>
+                  <td>1ks</td>
+                  <td class="price-cell">300,-</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <th scope="row">bivak</th>
+                  <td>2</td>
+                  <td>x</td>
+                  <td>x</td>
+                  <td class="price-cell">300,-/noc</td>
+                  <td>je možno postavit dopředu</td>
+                </tr>
+                <tr>
+                  <th scope="row">brolly</th>
+                  <td>1</td>
+                  <td>x</td>
+                  <td>x</td>
+                  <td class="price-cell">200,-/noc</td>
+                  <td>je možno postavit dopředu</td>
+                </tr>
+                <tr>
+                  <th scope="row">postel</th>
+                  <td>1</td>
+                  <td>x</td>
+                  <td>1ks</td>
+                  <td class="price-cell">200,-/noc</td>
+                  <td>je možno postavit dopředu</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
 
       <section id="rezervace" class="section-pad booking-section">
         <div class="container">
-          <div class="row g-5 align-items-center">
+          <div class="row g-5 align-items-start">
             <div class="col-lg-5">
               <p class="eyebrow">Rezervace</p>
-              <h2>Pošlete poptávku a ozveme se s volným termínem</h2>
-              <p>Vyberte přibližný termín a počet hostů. Formulář je připravený pro napojení na e-mail nebo rezervační systém.</p>
+              <h2>Nejdřív mrkněte na obsazenost, potom pošlete poptávku</h2>
+              <p>V kalendáři vidíte aktuálně zadané rezervace. Po odeslání formuláře termín zkontrolujeme, potvrdíme e-mailem a zapíšeme do kalendáře.</p>
+              <div class="booking-rules">
+                <strong>Rezervace probíhá v turnusech podle volného kalendáře.</strong>
+                <span>Ubytování, tedy maringotku s celým rybníkem, je možné rezervovat pouze od neděle do neděle nebo od středy do neděle.</span>
+                <span>Rezervovat lze vždy jen maringotku + celý rybník. Samostatné chytání bez maringotky není možné.</span>
+              </div>
               <div class="booking-contact">
-                <a href="tel:+420777123456">+420 777 123 456</a>
-                <a href="mailto:info@maringotkajitka.cz">info@maringotkajitka.cz</a>
+                <a href="tel:+420603723705">+420 603 723 705</a>
+                <a href="mailto:maringotkauvody@gmail.com">maringotkauvody@gmail.com</a>
               </div>
             </div>
             <div class="col-lg-7">
-              <form class="booking-form" id="bookingForm">
+              <div class="calendar-panel">
+                <iframe src="https://calendar.google.com/calendar/embed?src=maringotkauvody%40gmail.com&ctz=Europe%2FPrague" title="Kalendář obsazenosti Maringotky u vody" frameborder="0" scrolling="no"></iframe>
+              </div>
+            </div>
+          </div>
+
+          <div class="booking-form-wrap">
+            <form class="booking-form" id="bookingForm" action="https://formsubmit.co/maringotkauvody@gmail.com" method="POST">
+              <input type="hidden" name="_subject" value="Nová poptávka z webu Maringotka u vody">
+              <input type="hidden" name="_template" value="table">
+              <input type="hidden" name="_captcha" value="false">
                 <div class="row g-3">
                   <div class="col-md-6">
                     <label for="name" class="form-label">Jméno</label>
-                    <input type="text" class="form-control" id="name" name="name" required>
+                    <input type="text" class="form-control" id="name" name="Jméno" required>
                   </div>
                   <div class="col-md-6">
                     <label for="email" class="form-label">E-mail</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
+                    <input type="email" class="form-control" id="email" name="E-mail" required>
                   </div>
                   <div class="col-md-6">
                     <label for="arrival" class="form-label">Příjezd</label>
-                    <input type="date" class="form-control" id="arrival" name="arrival" required>
+                    <input type="date" class="form-control" id="arrival" name="Příjezd" required>
                   </div>
                   <div class="col-md-6">
                     <label for="departure" class="form-label">Odjezd</label>
-                    <input type="date" class="form-control" id="departure" name="departure" required>
+                    <input type="date" class="form-control" id="departure" name="Odjezd" required>
                   </div>
                   <div class="col-md-6">
                     <label for="guests" class="form-label">Počet hostů</label>
-                    <select class="form-select" id="guests" name="guests">
-                      <option>2 osoby</option>
+                    <select class="form-select" id="guests" name="Počet hostů">
+                      <option>1 osoba</option>
+                      <option selected>2 osoby</option>
                       <option>3 osoby</option>
                       <option>4 osoby</option>
+                      <option>5 osob</option>
+                      <option>6 osob</option>
+                      <option>7 osob</option>
+                      <option>8 osob</option>
+                      <option>9 osob</option>
+                      <option>10 osob</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="anglers" class="form-label">Počet rybářů</label>
+                    <select class="form-select" id="anglers" name="Počet rybářů">
+                      <option selected>0 rybářů</option>
+                      <option>1 rybář</option>
+                      <option>2 rybáři</option>
+                      <option>3 rybáři</option>
+                      <option>4 rybáři</option>
+                      <option>5 rybářů</option>
+                      <option>6 rybářů</option>
+                      <option>7 rybářů</option>
+                      <option>8 rybářů</option>
+                      <option>9 rybářů</option>
+                      <option>10 rybářů</option>
                     </select>
                   </div>
                   <div class="col-md-6">
                     <label for="phone" class="form-label">Telefon</label>
-                    <input type="tel" class="form-control" id="phone" name="phone">
+                    <input type="tel" class="form-control" id="phone" name="Telefon">
                   </div>
                   <div class="col-12">
                     <label for="message" class="form-label">Poznámka</label>
-                    <textarea class="form-control" id="message" name="message" rows="4" placeholder="Napište nám, jestli přijedete za rybařením, odpočinkem nebo oslavit klidný víkend."></textarea>
+                    <textarea class="form-control" id="message" name="Poznámka" rows="4" placeholder="Napište nám, jestli přijedete za rybařením, odpočinkem nebo oslavit klidný víkend."></textarea>
                   </div>
                   <div class="col-12">
                     <button type="submit" class="btn btn-primary btn-lg w-100">Odeslat poptávku</button>
@@ -283,7 +488,6 @@
                   </div>
                 </div>
               </form>
-            </div>
           </div>
         </div>
       </section>
@@ -293,26 +497,175 @@
           <div class="row g-4">
             <div class="col-lg-5">
               <p class="eyebrow text-earth">Kontakt</p>
-              <h2>Najdete nás u soukromého rybníka za vesnicí</h2>
-              <p>Přesnou adresu a příjezdové instrukce posíláme po potvrzení rezervace, aby místo zůstalo klidné a soukromé.</p>
+              <h2>Kontakt a kde nás najdete</h2>
+              <p>Zázemí se nachází nedaleko obce Čenkov u Třeště. Příjezd vede po zpevněné polní cestě a parkování je přímo u vody.</p>
             </div>
             <div class="col-lg-7">
               <div class="contact-panel">
                 <div>
                   <span>Telefon</span>
-                  <a href="tel:+420777123456">+420 777 123 456</a>
+                  <a href="tel:+420603723705">+420 603 723 705</a>
                 </div>
                 <div>
                   <span>E-mail</span>
-                  <a href="mailto:info@maringotkajitka.cz">info@maringotkajitka.cz</a>
+                  <a href="mailto:maringotkauvody@gmail.com">maringotkauvody@gmail.com</a>
                 </div>
                 <div>
                   <span>Lokalita</span>
-                  <strong>Jižní Čechy, soukromý rybník</strong>
+                  <strong>Čenkov - Třešť, 589 01</strong>
                 </div>
                 <div>
-                  <span>Příjezd</span>
-                  <strong>Parkování přímo u pozemku</strong>
+                  <span>Souřadnice</span>
+                  <strong>49.2869142N, 15.4336053E</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="arrival-panel">
+            <div>
+              <span>Příjezd</span>
+              <h3>Po zpevněné polní cestě</h3>
+              <p>Naše zázemí pro rybáře i rodinu s dětmi se nachází nedaleko obce Čenkov u Třeště. Dostanete se k nám po zpevněné polní cestě.</p>
+              <div class="map-links">
+                <a class="btn btn-primary" href="https://maps.app.goo.gl/D9Hob8zV8fZJoD4R9" target="_blank" rel="noopener">Google Maps</a>
+                <a class="btn btn-primary" href="https://mapy.com/s/ludogufofa" target="_blank" rel="noopener">Mapy.cz</a>
+              </div>
+            </div>
+            <div>
+              <span>Parkování</span>
+              <h3>Auta budete mít na dohled</h3>
+              <p>Parkování je u nás úplně v pohodě, protože zajedete skoro až k vodě. Auta je možné umístit na místech před vjezdem na hráz, takže je máte po celou dobu pobytu u sebe a na dohled.</p>
+              <p>Doporučené parkování je maximálně pro tři auta. Po domluvě se dá přizpůsobit, případně parkovat na horní cestě tak, aby auta nevadila zemědělské technice.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="rybi-pribehy" class="section-pad fish-stories-section">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow text-earth">Ryby s příběhem</p>
+            <h2>Každá velká ryba si zaslouží vlastní příběh</h2>
+            <p>Některé ryby u nás mají svoje jméno, historii a výzvu pro další rybáře. Když se některá z nich znovu ukáže v podběráku, bude u toho další kapitola.</p>
+          </div>
+          <div class="fish-stories-list">
+            <article class="fish-story-card">
+              <figure class="fish-story-photo">
+                <img src="assets/fish-stories/kapr-luky.png" alt="Kapr Luky">
+              </figure>
+              <div class="fish-story-content">
+                <span>Kapr obecný</span>
+                <h3>Kapr Luky</h3>
+                <p>Tenhle chlapík byl naposledy spatřen v podběráku v létě roku 2024. Od té doby se nám nějak vyhýbá a všichni doufáme, že je stále v rybníku. Má jasné poznávací znamení na levé straně u hřbetní ploutve.</p>
+                <p>Již dříve byl jednou chycen v jarních časech v menší velikosti, zhruba kolem roku 2020. Díky zanechání mlíčí v podložce jistě víme, že se jedná o mlíčňáka.</p>
+                <p>Poslední lovec je náš kamarád Lukáš, po kterém je kapr pojmenován. V roce 2024 měřil necelých 90 cm a vážil kolem 13 kg. Je to výzva nejen pro nás majitele, ale určitě i pro vás rybáře.</p>
+              </div>
+            </article>
+
+            <article class="fish-story-card">
+              <figure class="fish-story-photo">
+                <img src="assets/fish-stories/amur-pava.png" alt="Amur Páva">
+              </figure>
+              <div class="fish-story-content">
+                <span>Amur bílý</span>
+                <h3>Amur Páva</h3>
+                <p>Jestli je někdo opatrná ryba číslo jedna, tak je to náš amur Páva. Tohle torpédo měří přes metr a miluje pečivo a popky.</p>
+                <p>Zatím se nám do podložky podíval jen jednou, a to v pěkném lijáku, kdy lovec Pavel byl zmáchaný ze všech stran. Jeho dochovaná délka je 102 cm, což mu dává status nejdelší kaprovité ryby u nás.</p>
+                <p>Je dost možné, že ho některý ze svého druhu už přerostl. To ukáže až čas a další úlovky. Váhu zatím nemáme, tak doufáme, že nám ji někdo stanoví a odstartuje další kapitolu jeho příběhu.</p>
+              </div>
+            </article>
+
+            <article class="fish-story-card">
+              <figure class="fish-story-photo">
+                <img src="assets/fish-stories/sumec-albin.jpg" alt="Albínský sumec">
+              </figure>
+              <div class="fish-story-content">
+                <span>Sumec albín</span>
+                <h3>Sumec albín/ka ???</h3>
+                <p>Naším dalším mazlíčkem v rybníku je jistojistě přeživší sumec albín. Naposledy byl viděn na výlovu na podzim 2024, kdy měl kolem metru. Aktuální odhad velikosti je 120 až 130 cm.</p>
+                <p>Sumec byl vysazen v roce 2017 a nikdy nebyl chycen. Tahle výzva je asi nejzajímavější: kdo ho chytne první, po tom bude pojmenován.</p>
+                <p>Spolu s ním byli vysazeni i další tři albíni, ale na výlovu v této velikosti vidět nebyli, takže je možné, že už v revíru nejsou.</p>
+              </div>
+            </article>
+
+            <article class="fish-story-card">
+              <figure class="fish-story-photo">
+                <img src="assets/fish-stories/sumec-radous.png" alt="Sumec Radouš">
+              </figure>
+              <div class="fish-story-content">
+                <span>Sumec velký</span>
+                <h3>Sumec Radouš</h3>
+                <p>Tenhle sumec se u nás teprve zabydluje, nicméně je to naše největší evidovaná ryba. Jeho temně černošedé zbarvení a spodní předkus z něj dělají ostrou nabitou zbraň pro ostatní soupeře.</p>
+                <p>Kdo bude první a pomazlí se s tímhle naším obrem? Při měření metr ukazoval rovných 165 cm a váha se zastavila na 30 kg.</p>
+                <p>Vypuštěn byl letos na svátek práce, tak věříme, že i pro každého, kdo se ho bude snažit chytit, to bude jeden velký svátek. Podle našich ichtyologických poznatků se jedná o mlíčňáka.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="okoli" class="section-pad">
+        <div class="container">
+          <div class="row g-4 align-items-start">
+            <div class="col-lg-5">
+              <p class="eyebrow text-earth">Okolí</p>
+              <h2>Výlety po Vysočině</h2>
+              <p>Nejen rybaření nabízí naše kouzelné místo v koutku přírody. Nedaleko se nachází krásné koupání v zatopeném lomě, od nás je to co by kamenem dohodil, zhruba 10 minut chůze.</p>
+              <p>Konec léta láká k houbaření, které je na Vysočině vyhlášené. Cyklistika a dlouhé procházky jsou v takové přírodě samozřejmostí, stačí si najít chuť a čas.</p>
+              <p>Nákupy a stesk po městském prostředí vyřeší Třešť vzdálená 3 km. Město Betlémů nabídne i turistickou část. Dalším lákadlem je Telč, památka UNESCO vzdálená přibližně 12 km, a cestou narazíte i na hrad Roštejn, ke kterému se dá vyrazit autem i pěšky.</p>
+              <div class="nearby-list">
+                <span>Lom Čenkov 900 m</span>
+                <span>Hrad Roštejn 4 km</span>
+                <span>Třešť 3 km</span>
+                <span>Růžená 2 km</span>
+                <span>Telč 12 km</span>
+                <span>Jelení Hora Hodice 7 km</span>
+                <span>Javořice 12 km</span>
+                <span>Špičák 9 km</span>
+                <span>Lom Horní Cerekev 13 km</span>
+              </div>
+            </div>
+            <div class="col-lg-7">
+              <div class="row g-3 nearby-grid">
+                <div class="col-sm-6">
+                  <article class="nearby-card">
+                    <img src="assets/maringotka/lom-cenkov.jpg" alt="Lom Čenkov">
+                    <div>
+                      <span>900 m</span>
+                      <h3>Lom Čenkov</h3>
+                      <p>Krásné koupání v zatopeném lomu jen kousek od maringotky, ideální na osvěžení i krátkou procházku.</p>
+                    </div>
+                  </article>
+                </div>
+                <div class="col-sm-6">
+                  <article class="nearby-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Ro%C5%A1tejn_hrad_38.jpg" alt="Hrad Roštejn">
+                    <div>
+                      <span>4 km</span>
+                      <h3>Hrad Roštejn</h3>
+                      <p>Lesní hrad nad krajinou, kam se dá vyrazit autem i pěšky. Hezký cíl pro výlet během pobytu.</p>
+                    </div>
+                  </article>
+                </div>
+                <div class="col-sm-6">
+                  <article class="nearby-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Telc_-_main_square.jpg" alt="Historické náměstí v Telči">
+                    <div>
+                      <span>12 km</span>
+                      <h3>Město Telč</h3>
+                      <p>Známé město UNESCO s historickým náměstím, zámkem a atmosférou, která stojí za půldenní výlet.</p>
+                    </div>
+                  </article>
+                </div>
+                <div class="col-sm-6">
+                  <article class="nearby-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/PP_M%C3%ADchova_sk%C3%A1la.jpg" alt="Míchova skála">
+                    <div>
+                      <span>19 km</span>
+                      <h3>Míchova Skála</h3>
+                      <p>Skalní místo v přírodě pro ty, kdo chtějí spojit procházku lesem s výhledem a trochou ticha.</p>
+                    </div>
+                  </article>
                 </div>
               </div>
             </div>
@@ -323,12 +676,22 @@
 
     <footer class="site-footer">
       <div class="container d-flex flex-column flex-md-row justify-content-between gap-3">
-        <span>© 2026 Maringotka Jitka</span>
+        <span>© 2026 Maringotka u vody</span>
         <a href="#hero">Zpět nahoru</a>
       </div>
     </footer>
 
+    <div class="photo-lightbox" id="photoLightbox" aria-hidden="true">
+      <button class="photo-lightbox-close" type="button" aria-label="Zavřít fotku">&times;</button>
+      <figure class="photo-lightbox-inner">
+        <img src="" alt="" id="photoLightboxImage">
+        <figcaption id="photoLightboxCaption"></figcaption>
+        <a href="#" target="_blank" rel="noopener" id="photoLightboxLink">Otevřít v původní velikosti</a>
+      </figure>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://elfsightcdn.com/platform.js" async></script>
     <script src="js/main.js"></script>
   </body>
 </html>
