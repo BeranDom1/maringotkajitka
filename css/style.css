@@ -406,8 +406,7 @@ h3 {
   letter-spacing: 0.08em;
 }
 
-.gallery-section,
-.reviews-section {
+.gallery-section {
   background: #efe2cc;
 }
 
@@ -466,8 +465,7 @@ h3 {
   margin-top: 1.75rem;
 }
 
-.info-card,
-.review-card {
+.info-card {
   height: 100%;
   padding: 28px;
   background: var(--paper);
@@ -476,27 +474,9 @@ h3 {
   box-shadow: 0 18px 50px rgba(34, 53, 41, 0.08);
 }
 
-.info-card p,
-.review-card p {
+.info-card p {
   margin-bottom: 0;
   color: var(--muted);
-}
-
-.reviews-widget {
-  min-height: 180px;
-  padding: clamp(10px, 2vw, 18px);
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  box-shadow: 0 18px 50px rgba(34, 53, 41, 0.08);
-}
-
-.reviews-widget iframe {
-  display: block;
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  border: 0;
 }
 
 .nearby-list {
@@ -697,22 +677,6 @@ h3 {
 
 .fish-story-content p:last-child {
   margin-bottom: 0;
-}
-
-.stars {
-  margin-bottom: 1rem;
-  color: var(--clay);
-  letter-spacing: 0.08em;
-}
-
-.review-card p {
-  margin-bottom: 1.5rem;
-  color: var(--forest);
-  font-size: 1.03rem;
-}
-
-.review-card strong {
-  color: var(--clay);
 }
 
 .custom-accordion {
