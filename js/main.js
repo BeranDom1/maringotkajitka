@@ -1,5 +1,5 @@
 const navbar = document.querySelector(".navbar");
-const navLinks = document.querySelectorAll(".nav-link");
+const navLinks = document.querySelectorAll("#mainNav a[href^='#']");
 const heroVideo = document.querySelector(".hero-video");
 const bookingForm = document.querySelector("#bookingForm");
 const formStatus = document.querySelector("#formStatus");
@@ -34,10 +34,9 @@ if (heroVideo) {
 navLinks.forEach((link) => {
   link.addEventListener("click", () => {
     const menu = document.querySelector("#mainNav");
-    const instance = bootstrap.Collapse.getInstance(menu);
 
-    if (instance) {
-      instance.hide();
+    if (window.innerWidth < 992 && menu?.classList.contains("show")) {
+      bootstrap.Collapse.getOrCreateInstance(menu, { toggle: false }).hide();
     }
   });
 });
