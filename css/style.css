@@ -491,6 +491,15 @@ h3 {
   box-shadow: 0 18px 50px rgba(34, 53, 41, 0.08);
 }
 
+.reviews-widget iframe {
+  display: block;
+  width: 100%;
+  max-width: 900px;
+  height: 1200px;
+  margin: 0 auto;
+  border: 0;
+}
+
 .nearby-list {
   display: flex;
   flex-wrap: wrap;
