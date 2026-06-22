@@ -10,9 +10,12 @@ const photoLightboxImage = document.querySelector("#photoLightboxImage");
 const photoLightboxCaption = document.querySelector("#photoLightboxCaption");
 const photoLightboxLink = document.querySelector("#photoLightboxLink");
 const photoLightboxClose = document.querySelector(".photo-lightbox-close");
+const copyEmailButtons = document.querySelectorAll("[data-copy-email]");
+const copyEmailStatus = document.querySelector("#copyEmailStatus");
 const galleryPageSize = 8;
 let galleryItems = [];
 let visibleGalleryItems = galleryPageSize;
+let copyEmailStatusTimeout;
 
 function updateNavbar() {
   navbar.classList.toggle("is-scrolled", window.scrollY > 24);
@@ -37,6 +40,60 @@ navLinks.forEach((link) => {
 
     if (window.innerWidth < 992 && menu?.classList.contains("show")) {
       bootstrap.Collapse.getOrCreateInstance(menu, { toggle: false }).hide();
+    }
+  });
+});
+
+async function copyToClipboard(value) {
+  if (navigator.clipboard && window.isSecureContext) {
+    try {
+      await navigator.clipboard.writeText(value);
+      return;
+    } catch (error) {
+      // Some mobile browsers expose Clipboard API but deny permission.
+    }
+  }
+
+  const helper = document.createElement("textarea");
+  helper.value = value;
+  helper.setAttribute("readonly", "");
+  helper.style.position = "fixed";
+  helper.style.opacity = "0";
+  document.body.appendChild(helper);
+  helper.select();
+  helper.setSelectionRange(0, helper.value.length);
+  const copied = document.execCommand("copy");
+  helper.remove();
+
+  if (!copied) throw new Error("Kopírování není podporováno.");
+}
+
+function showCopyEmailStatus(message) {
+  if (!copyEmailStatus) return;
+
+  window.clearTimeout(copyEmailStatusTimeout);
+  copyEmailStatus.textContent = message;
+  copyEmailStatus.classList.add("is-visible");
+  copyEmailStatusTimeout = window.setTimeout(() => {
+    copyEmailStatus.classList.remove("is-visible");
+  }, 2600);
+}
+
+copyEmailButtons.forEach((button) => {
+  button.addEventListener("click", async () => {
+    const email = button.dataset.copyEmail;
+
+    try {
+      await copyToClipboard(email);
+      button.classList.add("is-copied");
+      button.setAttribute("aria-label", "E-mailová adresa byla zkopírována");
+      showCopyEmailStatus(`E-mail ${email} byl zkopírován.`);
+      window.setTimeout(() => {
+        button.classList.remove("is-copied");
+        button.setAttribute("aria-label", "Zkopírovat e-mailovou adresu");
+      }, 2600);
+    } catch (error) {
+      showCopyEmailStatus(`E-mail se nepodařilo zkopírovat: ${email}`);
     }
   });
 });

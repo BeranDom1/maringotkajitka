@@ -72,21 +72,27 @@ a {
   gap: 0.7rem;
 }
 
-.social-links a {
+.social-links a,
+.social-links button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex: 0 0 auto;
   width: 46px;
   height: 46px;
+  padding: 0;
   color: var(--forest);
   background: rgba(255, 255, 255, 0.46);
   border: 1px solid rgba(34, 53, 41, 0.14);
   border-radius: 999px;
+  font: inherit;
+  cursor: pointer;
   transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
-.social-links a:hover {
+.social-links a:hover,
+.social-links button:hover,
+.social-links button.is-copied {
   color: #fff;
   background: var(--clay);
   border-color: var(--clay);
@@ -962,10 +968,33 @@ h3 {
   gap: 1.1rem;
 }
 
-.footer-social a {
+.footer-social a,
+.footer-social button {
   color: #fff;
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.18);
+}
+
+.copy-toast {
+  position: fixed;
+  right: 50%;
+  bottom: calc(22px + env(safe-area-inset-bottom));
+  z-index: 2000;
+  max-width: calc(100vw - 32px);
+  padding: 12px 18px;
+  color: #fff;
+  background: var(--forest);
+  border-radius: 6px;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(50%, 12px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.copy-toast.is-visible {
+  opacity: 1;
+  transform: translate(50%, 0);
 }
 
 main img:not(.hero-logo):not(.hero-corner-logo img) {
@@ -1127,7 +1156,8 @@ main img:not(.hero-logo):not(.hero-corner-logo img) {
     gap: 0.3rem;
   }
 
-  .social-links a {
+  .social-links a,
+  .social-links button {
     width: 34px;
     height: 34px;
   }
@@ -1228,7 +1258,8 @@ main img:not(.hero-logo):not(.hero-corner-logo img) {
     gap: 0.2rem;
   }
 
-  .social-links a {
+  .social-links a,
+  .social-links button {
     width: 30px;
     height: 30px;
   }
