@@ -251,7 +251,7 @@ $confirmationBody = implode("\r\n", [
     '',
     'Upozorňujeme, že odesláním formuláře ještě nevzniká závazná rezervace. Termín je rezervovaný až po našem potvrzení.',
     '',
-    'Těšíme se na vás u vody.',
+    'Těšíme se na Vás u vody.',
     '',
     'Maringotka u vody',
     '+420 603 723 705',
