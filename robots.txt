@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /admin/
+Disallow: /data/
+Disallow: /reservation-submit.php
+
+Sitemap: https://maringotkauvody.cz/sitemap.xml
