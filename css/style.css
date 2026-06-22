@@ -495,15 +495,8 @@ h3 {
   display: block;
   width: 100%;
   max-width: 900px;
-  height: 650px;
   margin: 0 auto;
   border: 0;
-}
-
-@media (max-width: 767.98px) {
-  .reviews-widget iframe {
-    height: 760px;
-  }
 }
 
 .nearby-list {
