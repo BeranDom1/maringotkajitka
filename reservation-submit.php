@@ -245,7 +245,7 @@ if (!send_plain_email(
 $confirmationBody = implode("\r\n", [
     'Dobrý den,',
     '',
-    'děkujeme za vaši poptávku pobytu v Maringotce u vody.',
+    'děkujeme za Vaši poptávku pobytu v Maringotce u vody.',
     '',
     'Poptávku jsme úspěšně přijali. Zvolený termín od ' . display_date($arrival) . ' do ' . display_date($departure) . ' nyní zkontrolujeme a co nejdříve se vám ozveme s jeho potvrzením.',
     '',
