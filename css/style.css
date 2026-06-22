@@ -1039,6 +1039,22 @@ main img:not(.hero-logo):not(.hero-corner-logo img) {
   text-align: center;
 }
 
+.form-status.is-success {
+  color: #2f6b3d;
+}
+
+.form-status.is-error {
+  color: #a23d32;
+}
+
+.form-honeypot {
+  position: absolute !important;
+  left: -10000px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+}
+
 .photo-lightbox a {
   color: #fff;
   font-weight: 800;

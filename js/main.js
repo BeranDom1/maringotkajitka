@@ -159,15 +159,44 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-bookingForm.addEventListener("submit", (event) => {
+bookingForm?.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
   const arrival = document.querySelector("#arrival").value;
   const departure = document.querySelector("#departure").value;
+  const submitButton = bookingForm.querySelector('button[type="submit"]');
 
   if (arrival && departure && departure <= arrival) {
-    event.preventDefault();
+    formStatus.className = "form-status is-error";
     formStatus.textContent = "Zkontrolujte prosím termín, odjezd musí být později než příjezd.";
     return;
   }
 
+  submitButton.disabled = true;
+  submitButton.textContent = "Odesílám...";
+  formStatus.className = "form-status";
   formStatus.textContent = "Odesíláme poptávku na e-mail.";
+
+  try {
+    const response = await fetch(bookingForm.action, {
+      method: "POST",
+      body: new FormData(bookingForm),
+      headers: { "X-Requested-With": "XMLHttpRequest" },
+    });
+    const result = await response.json();
+
+    if (!response.ok || !result.success) {
+      throw new Error(result.message || "Poptávku se nepodařilo odeslat.");
+    }
+
+    bookingForm.reset();
+    formStatus.className = "form-status is-success";
+    formStatus.textContent = result.message;
+  } catch (error) {
+    formStatus.className = "form-status is-error";
+    formStatus.textContent = error.message || "Poptávku se nepodařilo odeslat. Zkuste to prosím znovu.";
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = "Odeslat poptávku";
+  }
 });

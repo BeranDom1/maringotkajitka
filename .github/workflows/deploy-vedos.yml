@@ -19,6 +19,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Check PHP syntax
+        run: |
+          php -l reservation-submit.php
+          find admin -maxdepth 1 -name '*.php' -print0 | xargs -0 -n1 php -l
+
       - name: Create admin config
         env:
           ADMIN_PASSWORD: ${{ secrets.MARINGOTKA_ADMIN_PASSWORD }}
@@ -40,3 +45,5 @@ jobs:
             **/.git*/**
             **/.github*/**
             **/README.md
+            **/data/gallery.json
+            **/uploads/gallery/**
