@@ -484,7 +484,7 @@ h3 {
 
 .reviews-widget {
   min-height: 180px;
-  padding: clamp(18px, 3vw, 26px);
+  padding: clamp(10px, 2vw, 18px);
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -495,9 +495,15 @@ h3 {
   display: block;
   width: 100%;
   max-width: 900px;
-  height: 1200px;
+  height: 650px;
   margin: 0 auto;
   border: 0;
+}
+
+@media (max-width: 767.98px) {
+  .reviews-widget iframe {
+    height: 760px;
+  }
 }
 
 .nearby-list {
