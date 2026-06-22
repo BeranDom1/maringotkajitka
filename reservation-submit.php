@@ -208,7 +208,11 @@ if (!in_array($guests, $allowedGuests, true) || !in_array($anglers, $allowedAngl
     respond(422, false, 'Zkontrolujte prosím počet hostů a rybářů.');
 }
 
-if (strlen($phone) > 80 || strlen($note) > 6000) {
+if ($phone === '' || !preg_match('/^[+0-9() .-]{9,30}$/', $phone)) {
+    respond(422, false, 'Zadejte prosím platné telefonní číslo.');
+}
+
+if (strlen($note) > 6000) {
     respond(422, false, 'Některý z vyplněných údajů je příliš dlouhý.');
 }
 

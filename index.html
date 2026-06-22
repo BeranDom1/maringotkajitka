@@ -467,7 +467,7 @@
               </div>
                 <div class="row g-3">
                   <div class="col-md-6">
-                    <label for="name" class="form-label">Jméno</label>
+                    <label for="name" class="form-label">Jméno + Příjmení</label>
                     <input type="text" class="form-control" id="name" name="name" autocomplete="name" required>
                   </div>
                   <div class="col-md-6">
@@ -484,7 +484,7 @@
                   </div>
                   <div class="col-md-6">
                     <label for="guests" class="form-label">Počet hostů</label>
-                    <select class="form-select" id="guests" name="guests">
+                    <select class="form-select" id="guests" name="guests" required>
                       <option>1 osoba</option>
                       <option selected>2 osoby</option>
                       <option>3 osoby</option>
@@ -499,7 +499,7 @@
                   </div>
                   <div class="col-md-6">
                     <label for="anglers" class="form-label">Počet rybářů</label>
-                    <select class="form-select" id="anglers" name="anglers">
+                    <select class="form-select" id="anglers" name="anglers" required>
                       <option selected>0 rybářů</option>
                       <option>1 rybář</option>
                       <option>2 rybáři</option>
@@ -515,7 +515,7 @@
                   </div>
                   <div class="col-md-6">
                     <label for="phone" class="form-label">Telefon</label>
-                    <input type="tel" class="form-control" id="phone" name="phone" autocomplete="tel">
+                    <input type="tel" class="form-control" id="phone" name="phone" autocomplete="tel" inputmode="tel" maxlength="30" pattern="[+0-9() .-]{9,30}" required>
                   </div>
                   <div class="col-12">
                     <label for="message" class="form-label">Poznámka</label>
