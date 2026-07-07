@@ -1035,6 +1035,10 @@ main img:not(.hero-logo):not(.hero-corner-logo img) {
 }
 
 .photo-lightbox figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.45rem 1rem;
   color: rgba(255, 255, 255, 0.88);
   font-weight: 700;
   text-align: center;
@@ -1078,6 +1082,55 @@ main img:not(.hero-logo):not(.hero-corner-logo img) {
 .photo-lightbox-close:hover,
 .photo-lightbox-close:focus {
   background: rgba(255, 255, 255, 0.22);
+}
+
+.photo-lightbox-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: clamp(50px, 7vw, 78px);
+  height: clamp(74px, 14vw, 150px);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  border-radius: 8px;
+  transform: translateY(-50%);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.photo-lightbox-nav::before {
+  content: "";
+  display: block;
+  width: 18px;
+  height: 18px;
+  margin: auto;
+  border-top: 4px solid currentColor;
+  border-left: 4px solid currentColor;
+}
+
+.photo-lightbox-prev {
+  left: clamp(10px, 2.5vw, 34px);
+}
+
+.photo-lightbox-prev::before {
+  transform: rotate(-45deg);
+}
+
+.photo-lightbox-next {
+  right: clamp(10px, 2.5vw, 34px);
+}
+
+.photo-lightbox-next::before {
+  transform: rotate(135deg);
+}
+
+.photo-lightbox-nav:hover,
+.photo-lightbox-nav:focus {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.photo-lightbox-nav:active {
+  transform: translateY(-50%) scale(0.98);
 }
 
 @media (max-width: 991.98px) {

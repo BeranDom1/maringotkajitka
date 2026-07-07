@@ -8,13 +8,19 @@ const galleryLoadMore = document.querySelector("#galleryLoadMore");
 const photoLightbox = document.querySelector("#photoLightbox");
 const photoLightboxImage = document.querySelector("#photoLightboxImage");
 const photoLightboxCaption = document.querySelector("#photoLightboxCaption");
+const photoLightboxCounter = document.querySelector("#photoLightboxCounter");
 const photoLightboxLink = document.querySelector("#photoLightboxLink");
 const photoLightboxClose = document.querySelector(".photo-lightbox-close");
+const photoLightboxPrev = document.querySelector(".photo-lightbox-prev");
+const photoLightboxNext = document.querySelector(".photo-lightbox-next");
 const copyEmailButtons = document.querySelectorAll("[data-copy-email]");
 const copyEmailStatus = document.querySelector("#copyEmailStatus");
 const galleryPageSize = 8;
 let galleryItems = [];
 let visibleGalleryItems = galleryPageSize;
+let lightboxItems = [];
+let lightboxIndex = 0;
+let lightboxTouchStartX = 0;
 let copyEmailStatusTimeout;
 
 function updateNavbar() {
@@ -131,7 +137,7 @@ function renderGallery() {
       return `
         <div class="${columnClass}">
           <figure class="gallery-tile${isWide ? " is-wide" : ""}">
-            <img src="${image}" alt="${caption || "Fotka z galerie Maringotky u vody"}" loading="lazy">
+            <img src="${image}" alt="${caption || "Fotka z galerie Maringotky u vody"}" loading="lazy" data-lightbox-group="gallery" data-lightbox-index="${index}">
             ${caption ? `<figcaption class="gallery-caption">${caption}</figcaption>` : ""}
           </figure>
         </div>
@@ -173,18 +179,61 @@ if (galleryLoadMore) {
 function openPhotoLightbox(image) {
   if (!photoLightbox || !photoLightboxImage) return;
 
-  const source = image.currentSrc || image.src;
-  const caption = image.alt || "";
+  const group = image.dataset.lightboxGroup;
 
-  photoLightboxImage.src = source;
-  photoLightboxImage.alt = caption;
-  photoLightboxCaption.textContent = caption;
-  photoLightboxCaption.hidden = !caption;
-  photoLightboxLink.href = source;
+  if (group === "gallery") {
+    lightboxItems = galleryItems.map((item) => ({
+      src: item.image,
+      caption: item.caption || "Fotka z galerie Maringotky u vody",
+    }));
+    lightboxIndex = Number.parseInt(image.dataset.lightboxIndex || "0", 10);
+  } else {
+    const images = Array.from(document.querySelectorAll("main img:not(.hero-logo)"))
+      .filter((item) => !item.closest(".hero-corner-logo"));
+
+    lightboxItems = images.map((item) => ({
+      src: item.currentSrc || item.src,
+      caption: item.alt || "",
+    }));
+    lightboxIndex = Math.max(0, images.indexOf(image));
+  }
+
+  if (!lightboxItems.length) return;
+
+  showLightboxItem(lightboxIndex);
   photoLightbox.classList.add("is-open");
   photoLightbox.setAttribute("aria-hidden", "false");
   document.body.classList.add("lightbox-open");
   photoLightboxClose.focus();
+}
+
+function showLightboxItem(index) {
+  if (!lightboxItems.length || !photoLightboxImage) return;
+
+  lightboxIndex = (index + lightboxItems.length) % lightboxItems.length;
+  const item = lightboxItems[lightboxIndex];
+  const caption = item.caption || "";
+
+  photoLightboxImage.src = item.src;
+  photoLightboxImage.alt = caption;
+  photoLightboxCaption.textContent = caption;
+  photoLightboxCaption.hidden = !caption;
+  if (photoLightboxCounter) {
+    photoLightboxCounter.textContent = `${lightboxIndex + 1} / ${lightboxItems.length}`;
+  }
+  photoLightboxLink.href = item.src;
+
+  const singleImage = lightboxItems.length <= 1;
+  photoLightboxPrev.hidden = singleImage;
+  photoLightboxNext.hidden = singleImage;
+}
+
+function showPreviousLightboxItem() {
+  showLightboxItem(lightboxIndex - 1);
+}
+
+function showNextLightboxItem() {
+  showLightboxItem(lightboxIndex + 1);
 }
 
 function closePhotoLightbox() {
@@ -194,6 +243,8 @@ function closePhotoLightbox() {
   photoLightbox.setAttribute("aria-hidden", "true");
   document.body.classList.remove("lightbox-open");
   photoLightboxImage.src = "";
+  lightboxItems = [];
+  lightboxIndex = 0;
 }
 
 document.addEventListener("click", (event) => {
@@ -210,10 +261,40 @@ document.addEventListener("click", (event) => {
 });
 
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && photoLightbox?.classList.contains("is-open")) {
+  if (!photoLightbox?.classList.contains("is-open")) return;
+
+  if (event.key === "Escape") {
     closePhotoLightbox();
   }
+
+  if (event.key === "ArrowLeft") {
+    showPreviousLightboxItem();
+  }
+
+  if (event.key === "ArrowRight") {
+    showNextLightboxItem();
+  }
 });
+
+photoLightboxPrev?.addEventListener("click", showPreviousLightboxItem);
+photoLightboxNext?.addEventListener("click", showNextLightboxItem);
+
+photoLightbox?.addEventListener("touchstart", (event) => {
+  lightboxTouchStartX = event.changedTouches[0]?.clientX || 0;
+}, { passive: true });
+
+photoLightbox?.addEventListener("touchend", (event) => {
+  const endX = event.changedTouches[0]?.clientX || 0;
+  const movement = endX - lightboxTouchStartX;
+
+  if (Math.abs(movement) < 44) return;
+
+  if (movement > 0) {
+    showPreviousLightboxItem();
+  } else {
+    showNextLightboxItem();
+  }
+}, { passive: true });
 
 bookingForm?.addEventListener("submit", async (event) => {
   event.preventDefault();
