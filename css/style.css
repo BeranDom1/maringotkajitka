@@ -1274,7 +1274,63 @@ main img:not(.hero-logo):not(.hero-corner-logo img) {
   }
 
   .pricing-table {
-    min-width: 880px;
+    table-layout: fixed;
+    min-width: 560px;
+    font-size: 0.74rem;
+    line-height: 1.35;
+  }
+
+  .pricing-table th,
+  .pricing-table td {
+    padding: 8px 5px;
+    overflow-wrap: anywhere;
+  }
+
+  .pricing-table tbody th {
+    min-width: 0;
+  }
+
+  .pricing-table thead th {
+    white-space: normal;
+  }
+
+  .pricing-table th:nth-child(1),
+  .pricing-table td:nth-child(1) {
+    width: 90px;
+  }
+
+  .pricing-table th:nth-child(2),
+  .pricing-table td:nth-child(2) {
+    width: 62px;
+  }
+
+  .pricing-table th:nth-child(3),
+  .pricing-table td:nth-child(3) {
+    width: 54px;
+  }
+
+  .pricing-table th:nth-child(4),
+  .pricing-table td:nth-child(4) {
+    width: 96px;
+  }
+
+  .pricing-table th:nth-child(5),
+  .pricing-table td:nth-child(5) {
+    width: 72px;
+  }
+
+  .pricing-table th:nth-child(6),
+  .pricing-table td:nth-child(6) {
+    width: 186px;
+  }
+
+  .pricing-table .price-cell {
+    white-space: normal;
+  }
+
+  .pricing-group-row th {
+    padding: 11px 8px;
+    font-size: 1rem;
   }
 
   .gallery-tile,
