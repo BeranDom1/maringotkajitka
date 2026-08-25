@@ -42,7 +42,14 @@ function read_gallery(): array
     }
 
     $data = json_decode((string) file_get_contents(GALLERY_DATA_FILE), true);
-    return is_array($data) ? $data : [];
+    if (!is_array($data)) {
+        return [];
+    }
+
+    return array_map(static function (array $item): array {
+        $item['section'] = normalize_gallery_section((string) ($item['section'] ?? ''));
+        return $item;
+    }, $data);
 }
 
 function write_gallery(array $items): void
@@ -54,9 +61,25 @@ function write_gallery(array $items): void
 
     file_put_contents(
         GALLERY_DATA_FILE,
-        json_encode(array_values($items), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
+        json_encode(array_map(static function (array $item): array {
+            $item['section'] = normalize_gallery_section((string) ($item['section'] ?? ''));
+            return $item;
+        }, array_values($items)), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
         LOCK_EX
     );
+}
+
+function gallery_sections(): array
+{
+    return [
+        'maringotka' => 'Okolí maringotky a její vybavení',
+        'ulovky-2026' => 'Úlovky z našeho rybníka v roce 2026',
+    ];
+}
+
+function normalize_gallery_section(string $section): string
+{
+    return array_key_exists($section, gallery_sections()) ? $section : 'maringotka';
 }
 
 function e(string $value): string

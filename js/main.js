@@ -3,8 +3,7 @@ const navLinks = document.querySelectorAll("#mainNav a[href^='#']");
 const heroVideo = document.querySelector(".hero-video");
 const bookingForm = document.querySelector("#bookingForm");
 const formStatus = document.querySelector("#formStatus");
-const galleryGrid = document.querySelector("#galleryGrid");
-const galleryLoadMore = document.querySelector("#galleryLoadMore");
+const galleryBlocks = Array.from(document.querySelectorAll("[data-gallery-section]"));
 const photoLightbox = document.querySelector("#photoLightbox");
 const photoLightboxImage = document.querySelector("#photoLightboxImage");
 const photoLightboxCaption = document.querySelector("#photoLightboxCaption");
@@ -17,7 +16,7 @@ const copyEmailButtons = document.querySelectorAll("[data-copy-email]");
 const copyEmailStatus = document.querySelector("#copyEmailStatus");
 const galleryPageSize = 8;
 let galleryItems = [];
-let visibleGalleryItems = galleryPageSize;
+const galleryState = new Map();
 let lightboxItems = [];
 let lightboxIndex = 0;
 let lightboxTouchStartX = 0;
@@ -112,16 +111,33 @@ function escapeText(value) {
     .replaceAll('"', "&quot;");
 }
 
-function renderGallery() {
+function getGallerySection(item) {
+  return item.section || "maringotka";
+}
+
+function getGallerySectionItems(sectionId) {
+  return galleryItems.filter((item) => getGallerySection(item) === sectionId);
+}
+
+function renderGalleryBlock(block) {
+  const sectionId = block.dataset.gallerySection;
+  const galleryGrid = block.querySelector("[data-gallery-grid]");
+  const galleryToggle = block.querySelector("[data-gallery-toggle]");
+  const sectionItems = getGallerySectionItems(sectionId);
+  const visibleItems = galleryState.get(sectionId) || galleryPageSize;
+
   if (!galleryGrid) return;
 
-  if (!galleryItems.length) {
-    galleryGrid.innerHTML = '<div class="col-12"><p class="gallery-empty">Galerie zatím čeká na první fotky.</p></div>';
-    if (galleryLoadMore) galleryLoadMore.hidden = true;
+  if (!sectionItems.length) {
+    const emptyText = sectionId === "ulovky-2026"
+      ? "Galerie zatím čeká na první úlovky."
+      : "Galerie zatím čeká na první fotky.";
+    galleryGrid.innerHTML = `<div class="col-12"><p class="gallery-empty">${emptyText}</p></div>`;
+    if (galleryToggle) galleryToggle.hidden = true;
     return;
   }
 
-  const itemsToShow = galleryItems.slice(0, visibleGalleryItems);
+  const itemsToShow = sectionItems.slice(0, visibleItems);
 
   galleryGrid.innerHTML = itemsToShow
     .map((item, index) => {
@@ -137,7 +153,7 @@ function renderGallery() {
       return `
         <div class="${columnClass}">
           <figure class="gallery-tile${isWide ? " is-wide" : ""}">
-            <img src="${image}" alt="${caption || "Fotka z galerie Maringotky u vody"}" loading="lazy" data-lightbox-group="gallery" data-lightbox-index="${index}">
+            <img src="${image}" alt="${caption || "Fotka z galerie Maringotky u vody"}" loading="lazy" data-lightbox-group="gallery-${sectionId}" data-lightbox-index="${index}">
             ${caption ? `<figcaption class="gallery-caption">${caption}</figcaption>` : ""}
           </figure>
         </div>
@@ -145,15 +161,19 @@ function renderGallery() {
     })
     .join("");
 
-  if (galleryLoadMore) {
-    const hasExtraItems = galleryItems.length > galleryPageSize;
-    const isExpanded = visibleGalleryItems >= galleryItems.length;
-    galleryLoadMore.hidden = !hasExtraItems;
-    galleryLoadMore.textContent = isExpanded ? "Zobrazit méně" : "Zobrazit další";
+  if (galleryToggle) {
+    const hasExtraItems = sectionItems.length > galleryPageSize;
+    const isExpanded = visibleItems >= sectionItems.length;
+    galleryToggle.hidden = !hasExtraItems;
+    galleryToggle.textContent = isExpanded ? "Zobrazit méně" : "Zobrazit další";
   }
 }
 
-if (galleryGrid) {
+function renderGallery() {
+  galleryBlocks.forEach(renderGalleryBlock);
+}
+
+if (galleryBlocks.length) {
   fetch("data/gallery.json", { cache: "no-store" })
     .then((response) => {
       if (!response.ok) throw new Error("Gallery data not found");
@@ -161,34 +181,50 @@ if (galleryGrid) {
     })
     .then((items) => {
       galleryItems = Array.isArray(items) ? items : [];
-      visibleGalleryItems = galleryPageSize;
+      galleryBlocks.forEach((block) => {
+        galleryState.set(block.dataset.gallerySection, galleryPageSize);
+      });
       renderGallery();
     })
     .catch(() => {
-      galleryGrid.innerHTML = '<div class="col-12"><p class="gallery-empty">Galerii se nepodařilo načíst.</p></div>';
-      if (galleryLoadMore) galleryLoadMore.hidden = true;
+      galleryBlocks.forEach((block) => {
+        const galleryGrid = block.querySelector("[data-gallery-grid]");
+        const galleryToggle = block.querySelector("[data-gallery-toggle]");
+        if (galleryGrid) {
+          galleryGrid.innerHTML = '<div class="col-12"><p class="gallery-empty">Galerii se nepodařilo načíst.</p></div>';
+        }
+        if (galleryToggle) galleryToggle.hidden = true;
+      });
     });
 }
 
-if (galleryLoadMore) {
-  galleryLoadMore.addEventListener("click", () => {
-    if (visibleGalleryItems >= galleryItems.length) {
-      visibleGalleryItems = galleryPageSize;
-      galleryGrid?.scrollIntoView({ behavior: "smooth", block: "start" });
+galleryBlocks.forEach((block) => {
+  const galleryToggle = block.querySelector("[data-gallery-toggle]");
+
+  galleryToggle?.addEventListener("click", () => {
+    const sectionId = block.dataset.gallerySection;
+    const sectionItems = getGallerySectionItems(sectionId);
+    const visibleItems = galleryState.get(sectionId) || galleryPageSize;
+
+    if (visibleItems >= sectionItems.length) {
+      galleryState.set(sectionId, galleryPageSize);
+      block.scrollIntoView({ behavior: "smooth", block: "start" });
     } else {
-      visibleGalleryItems = Math.min(visibleGalleryItems + galleryPageSize, galleryItems.length);
+      galleryState.set(sectionId, Math.min(visibleItems + galleryPageSize, sectionItems.length));
     }
+
     renderGallery();
   });
-}
+});
 
 function openPhotoLightbox(image) {
   if (!photoLightbox || !photoLightboxImage) return;
 
   const group = image.dataset.lightboxGroup;
 
-  if (group === "gallery") {
-    lightboxItems = galleryItems.map((item) => ({
+  if (group?.startsWith("gallery-")) {
+    const sectionId = group.replace("gallery-", "");
+    lightboxItems = getGallerySectionItems(sectionId).map((item) => ({
       src: item.image,
       caption: item.caption || "Fotka z galerie Maringotky u vody",
     }));

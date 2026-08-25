@@ -25,6 +25,7 @@ if (is_logged_in() && $_SERVER['REQUEST_METHOD'] === 'POST') {
     verify_csrf();
     $action = $_POST['action'] ?? '';
     $items = read_gallery();
+    $uploadSection = normalize_gallery_section((string) ($_POST['section'] ?? ''));
 
     if ($action === 'upload') {
         if (!is_dir(GALLERY_UPLOAD_DIR)) {
@@ -72,6 +73,7 @@ if (is_logged_in() && $_SERVER['REQUEST_METHOD'] === 'POST') {
                     'id' => pathinfo($fileName, PATHINFO_FILENAME),
                     'image' => GALLERY_UPLOAD_URL . '/' . $fileName,
                     'caption' => '',
+                    'section' => $uploadSection,
                     'createdAt' => date(DATE_ATOM),
                 ];
                 $uploaded++;
@@ -89,11 +91,16 @@ if (is_logged_in() && $_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($action === 'save') {
         $captions = $_POST['captions'] ?? [];
         $orders = $_POST['orders'] ?? [];
+        $sections = $_POST['sections'] ?? [];
 
         foreach ($items as $index => &$item) {
             $id = (string) ($item['id'] ?? '');
             if (isset($captions[$id])) {
                 $item['caption'] = trim((string) $captions[$id]);
+            }
+
+            if (isset($sections[$id])) {
+                $item['section'] = normalize_gallery_section((string) $sections[$id]);
             }
 
             $item['_order'] = isset($orders[$id]) ? (int) $orders[$id] : $index + 1;
@@ -138,6 +145,7 @@ if (is_logged_in() && $_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $items = is_logged_in() ? read_gallery() : [];
+$gallerySections = gallery_sections();
 
 ?>
 <!doctype html>
@@ -146,7 +154,7 @@ $items = is_logged_in() ? read_gallery() : [];
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Administrace galerie | Maringotka u vody</title>
-    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="admin.css?v=20260825-1">
   </head>
   <body>
     <?php if (!is_logged_in()): ?>
@@ -182,10 +190,16 @@ $items = is_logged_in() ? read_gallery() : [];
 
         <section class="panel">
           <h2>Nahrát nové fotky</h2>
-          <p class="hint">Můžete vybrat více fotek najednou z počítače i mobilu. Popisky doplníte po nahrání níže.</p>
+          <p class="hint">Nejdřív vyberte sekci, do které fotky patří. Můžete vybrat více fotek najednou z počítače i mobilu. Popisky doplníte po nahrání níže.</p>
           <form method="post" enctype="multipart/form-data">
             <input type="hidden" name="csrf_token" value="<?= e(csrf_token()) ?>">
             <input type="hidden" name="action" value="upload">
+            <label for="section">Sekce galerie</label>
+            <select id="section" name="section" required>
+              <?php foreach ($gallerySections as $sectionId => $sectionLabel): ?>
+                <option value="<?= e($sectionId) ?>"><?= e($sectionLabel) ?></option>
+              <?php endforeach; ?>
+            </select>
             <label for="photos">Fotky</label>
             <input type="file" id="photos" name="photos[]" accept="image/jpeg,image/png,image/webp" multiple required>
             <p class="hint">Povolené formáty: JPG, PNG, WebP. Limit jedné fotky: 8 MB.</p>
@@ -200,33 +214,54 @@ $items = is_logged_in() ? read_gallery() : [];
           <?php if (!$items): ?>
             <p class="hint">Galerie zatím nemá žádné fotky.</p>
           <?php else: ?>
-            <p class="hint">Pořadí určuje, jak se fotky zobrazí na webu. Prvních 8 fotek je vidět hned, další se zobrazí po tlačítku „Zobrazit další“.</p>
+            <p class="hint">Pořadí určuje, jak se fotky zobrazí v dané sekci. Prvních 8 fotek v každé sekci je vidět hned, další se zobrazí po tlačítku „Zobrazit další“.</p>
             <form method="post">
               <input type="hidden" name="csrf_token" value="<?= e(csrf_token()) ?>">
               <input type="hidden" name="action" value="save">
-              <div class="grid">
-                <?php foreach ($items as $index => $item): ?>
-                  <?php
-                    $id = (string) ($item['id'] ?? '');
-                    $image = (string) ($item['image'] ?? '');
-                    $caption = (string) ($item['caption'] ?? '');
-                    $order = $index + 1;
-                  ?>
-                  <article class="photo-card">
-                    <?php if ($order <= 8): ?>
-                      <span class="photo-badge">Vidět hned</span>
-                    <?php endif; ?>
-                    <img src="<?= e(image_src_for_admin($image)) ?>" alt="">
-                    <div class="photo-card-body">
-                      <label for="order-<?= e($id) ?>">Pořadí</label>
-                      <input type="number" id="order-<?= e($id) ?>" name="orders[<?= e($id) ?>]" min="1" step="1" value="<?= e((string) $order) ?>">
-                      <label for="caption-<?= e($id) ?>">Popisek</label>
-                      <textarea id="caption-<?= e($id) ?>" name="captions[<?= e($id) ?>]" placeholder="Popisek může zůstat prázdný."><?= e($caption) ?></textarea>
-                      <button class="button danger" type="submit" form="delete-<?= e($id) ?>">Smazat fotku</button>
+              <?php foreach ($gallerySections as $sectionId => $sectionLabel): ?>
+                <?php
+                  $sectionItems = array_values(array_filter($items, static function (array $item) use ($sectionId): bool {
+                      return normalize_gallery_section((string) ($item['section'] ?? '')) === $sectionId;
+                  }));
+                ?>
+                <section class="gallery-admin-section">
+                  <h3><?= e($sectionLabel) ?></h3>
+                  <?php if (!$sectionItems): ?>
+                    <p class="hint">V této sekci zatím nejsou žádné fotky.</p>
+                  <?php else: ?>
+                    <div class="grid">
+                      <?php foreach ($sectionItems as $index => $item): ?>
+                        <?php
+                          $id = (string) ($item['id'] ?? '');
+                          $image = (string) ($item['image'] ?? '');
+                          $caption = (string) ($item['caption'] ?? '');
+                          $order = $index + 1;
+                          $currentSection = normalize_gallery_section((string) ($item['section'] ?? ''));
+                        ?>
+                        <article class="photo-card">
+                          <?php if ($order <= 8): ?>
+                            <span class="photo-badge">Vidět hned</span>
+                          <?php endif; ?>
+                          <img src="<?= e(image_src_for_admin($image)) ?>" alt="">
+                          <div class="photo-card-body">
+                            <label for="section-<?= e($id) ?>">Sekce</label>
+                            <select id="section-<?= e($id) ?>" name="sections[<?= e($id) ?>]">
+                              <?php foreach ($gallerySections as $optionId => $optionLabel): ?>
+                                <option value="<?= e($optionId) ?>" <?= $optionId === $currentSection ? 'selected' : '' ?>><?= e($optionLabel) ?></option>
+                              <?php endforeach; ?>
+                            </select>
+                            <label for="order-<?= e($id) ?>">Pořadí v sekci</label>
+                            <input type="number" id="order-<?= e($id) ?>" name="orders[<?= e($id) ?>]" min="1" step="1" value="<?= e((string) $order) ?>">
+                            <label for="caption-<?= e($id) ?>">Popisek</label>
+                            <textarea id="caption-<?= e($id) ?>" name="captions[<?= e($id) ?>]" placeholder="Popisek může zůstat prázdný."><?= e($caption) ?></textarea>
+                            <button class="button danger" type="submit" form="delete-<?= e($id) ?>">Smazat fotku</button>
+                          </div>
+                        </article>
+                      <?php endforeach; ?>
                     </div>
-                  </article>
-                <?php endforeach; ?>
-              </div>
+                  <?php endif; ?>
+                </section>
+              <?php endforeach; ?>
               <div class="actions">
                 <button class="button" type="submit">Uložit galerii</button>
               </div>

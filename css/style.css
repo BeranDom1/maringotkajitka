@@ -416,6 +416,22 @@ h3 {
   background: #efe2cc;
 }
 
+.gallery-block + .gallery-block {
+  margin-top: clamp(46px, 7vw, 82px);
+}
+
+.gallery-subheading {
+  margin-bottom: 22px;
+}
+
+.gallery-subheading h3 {
+  margin: 0;
+  color: var(--forest);
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  line-height: 0.98;
+}
+
 .section-heading {
   max-width: 760px;
   margin-bottom: 1.25rem;
