@@ -421,15 +421,17 @@ h3 {
 }
 
 .gallery-subheading {
-  margin-bottom: 22px;
+  max-width: 780px;
+  margin-bottom: 20px;
 }
 
 .gallery-subheading h3 {
   margin: 0;
   color: var(--forest);
-  font-family: var(--font-serif);
-  font-size: clamp(2rem, 5vw, 3.6rem);
-  line-height: 0.98;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.85rem, 3.2vw, 2.9rem);
+  font-weight: 700;
+  line-height: 1.08;
 }
 
 .section-heading {
