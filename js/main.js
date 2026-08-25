@@ -146,9 +146,10 @@ function renderGallery() {
     .join("");
 
   if (galleryLoadMore) {
-    const hasMoreItems = visibleGalleryItems < galleryItems.length;
-    galleryLoadMore.hidden = !hasMoreItems;
-    galleryLoadMore.textContent = hasMoreItems ? "Zobrazit další" : "";
+    const hasExtraItems = galleryItems.length > galleryPageSize;
+    const isExpanded = visibleGalleryItems >= galleryItems.length;
+    galleryLoadMore.hidden = !hasExtraItems;
+    galleryLoadMore.textContent = isExpanded ? "Zobrazit méně" : "Zobrazit další";
   }
 }
 
@@ -171,7 +172,12 @@ if (galleryGrid) {
 
 if (galleryLoadMore) {
   galleryLoadMore.addEventListener("click", () => {
-    visibleGalleryItems += galleryPageSize;
+    if (visibleGalleryItems >= galleryItems.length) {
+      visibleGalleryItems = galleryPageSize;
+      galleryGrid?.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      visibleGalleryItems = Math.min(visibleGalleryItems + galleryPageSize, galleryItems.length);
+    }
     renderGallery();
   });
 }
