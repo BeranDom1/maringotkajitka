@@ -458,6 +458,10 @@ h3 {
   box-shadow: none;
 }
 
+[data-gallery-section="ulovky-2026"] .gallery-tile img {
+  object-position: center 18%;
+}
+
 .gallery-tile.is-wide img {
   height: 430px;
 }
