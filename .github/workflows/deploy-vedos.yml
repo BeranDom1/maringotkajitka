@@ -47,3 +47,7 @@ jobs:
             **/README.md
             **/data/gallery.json
             **/uploads/gallery/**
+            **/Dockerfile
+            **/compose.yaml
+            **/.dockerignore
+            **/.env*

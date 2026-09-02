@@ -1,6 +1,7 @@
 RewriteEngine On
 
 # Use one canonical HTTPS hostname for every public URL.
+RewriteCond %{ENV:MARINGOTKA_LOCAL_PREVIEW} !=1
 RewriteCond %{HTTPS} !=on [OR]
 RewriteCond %{HTTP_HOST} ^www\.maringotkauvody\.cz$ [NC]
 RewriteRule ^(.*)$ https://maringotkauvody.cz/$1 [R=301,L,NE]

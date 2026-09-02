@@ -1,3 +1,6 @@
 admin/config.local.php
+.env
+.env.*
+!.env.example
 uploads/gallery/*
 !uploads/gallery/.gitkeep
