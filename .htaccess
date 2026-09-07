@@ -1,3 +1,6 @@
+# Temporary maintenance shutdown. Remove these two lines to restore access.
+Require all denied
+
 RewriteEngine On
 
 # Use one canonical HTTPS hostname for every public URL.
